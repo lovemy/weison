@@ -39,7 +39,7 @@ return CMap::mergeArray(
 		'params' => $params,
 		// preload components required before running applications
 		// @see http://www.yiiframework.com/doc/api/1.1/CModule#preload-detail
-		'preload' => array('log'),
+		'preload' => array('booster','log'),
 		// @see http://www.yiiframework.com/doc/api/1.1/CApplication#language-detail
 
 	    'language'=>'zh_cn',
@@ -107,6 +107,11 @@ return CMap::mergeArray(
 				'urlSuffix' => '/',
 				'rules' => $params['url.rules'],
 				
+			),
+
+			'booster' => array(
+				'class' => 'common.extensions.booster.src.components.Booster',
+				'responsiveCss' => true,
 			),
 
 			'user'=>array(
