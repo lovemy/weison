@@ -67,16 +67,48 @@ return CMap::mergeArray(
 			'application.components.*',
 			'application.controllers.*',
 			'application.models.*',			
+
+			//for user module
+			'common.modules.user.models.*',
+        	'common.modules.user.components.*',
 		),
 		/* uncomment and set if required */
 		// @see http://www.yiiframework.com/doc/api/1.1/CModule#setModules-detail
 		'modules' => array(      
-			'user' => array(
+			'user'=>array(
 				'class' => 'common.modules.user.UserModule',
-				'autoLogin' => true,
-			),			
+	            # encrypting method (php hash function)
+	            'hash' => 'md5',
+	            # send activation email
+	            'sendActivationMail' => true,
+	            # allow access for non-activated users
+	            'loginNotActiv' => false,
+	            # activate user on registration (only sendActivationMail = false)
+	            'activeAfterRegister' => false,
+	            # automatically login from registration
+	            'autoLogin' => true,
+	            # registration path
+	            'registrationUrl' => array('/user/registration'),
+	            # recovery password path
+	            'recoveryUrl' => array('/user/recovery'),
+	            # login form path
+	            'loginUrl' => array('/user/login'),
+	            # page after login
+	            'returnUrl' => array('/user/profile'),
+	            # page after logout
+	            'returnLogoutUrl' => array('/user/login'),
+	        ),		
 		), 
 		'components' => array(
+			
+			'urlManager' => array(
+				'urlFormat' => 'path',
+				'showScriptName' => false,
+				'urlSuffix' => '/',
+				'rules' => $params['url.rules'],
+				
+			),
+
 			'user'=>array(
 		        'class'=>'WebUser',//你可以自定义你的Cwebuserookie'=>array('domain' => '.domain.cc','path' => '/'),//配置用户cookie作用域
 				// enable cookie-based authentication
@@ -86,7 +118,7 @@ return CMap::mergeArray(
 			),
 		
 			'session' => array(
-				'cookieParams' => array('domain' => 'niulanqian.com', 'lifetime' => 0),//配置会话ID作用域 生命期和超时
+				'cookieParams' => array('domain' => 'weison.com', 'lifetime' => 0),//配置会话ID作用域 生命期和超时
 				'timeout' => 3600,
 				//这里千万不要指定cookieMode => none，否则无法对应sessionid导致无法登录，更别说同步了。（有些不负责的博客竟然说同步登录需要设定这个属性为none！！！！太坑爹了。。。）
 			),

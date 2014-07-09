@@ -41,16 +41,7 @@ class SiteController extends Controller {
 	 */
 	public function actionIndex() 
 	{
-		$a = new CDbCriteria();
-		$a->limit = 5;
-		$a->order = 'id DESC';
-		$lib = SayingLib::model()->findAll($a);
-		$count = ProjectLib::model()->count();
-		//print_r($lib);exit();
-	 	$this->render('index',array(
-	 		'lib' => $lib,
-	 		'count' => $count,
-	 	));
+	 	$this->render('index');
 	}
 
 	public function actionError()
@@ -62,11 +53,5 @@ class SiteController extends Controller {
 	            $this->render('error',array('error'=>$error));	        	
 	        }  	
 	    }  
-	}
-
-
-	public function actionTest()
-	{
-		print_r($_SESSION['user']);
 	}
 }
