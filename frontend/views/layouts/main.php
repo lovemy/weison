@@ -13,17 +13,6 @@
 
 <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl;?>/css/index.css" type="text/css" />
 <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl;?>/css/use.css" type="text/css" />
-<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/bootstrap.js"></script>
-<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/main.js"></script>
-<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/scroll.js"></script>
-<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/sdcms.photo.js"></script>
-<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/jquery.soChange-min.js"></script>
-<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl;?>/js/countUp.js"></script>
-
-
-
 
 </head> 
 <body>
