@@ -39,7 +39,7 @@ return CMap::mergeArray(
 		'params' => $params,
 		// preload components required before running applications
 		// @see http://www.yiiframework.com/doc/api/1.1/CModule#preload-detail
-		'preload' => array('log'),
+		'preload' => array('booster','log'),
 		// @see http://www.yiiframework.com/doc/api/1.1/CApplication#language-detail
 
 	    'language'=>'zh_cn',
@@ -56,20 +56,46 @@ return CMap::mergeArray(
 			'common.messages.*',
 			'application.components.*',
 			'application.controllers.*',
-			'application.models.*',			
+			'application.models.*',	
+
+			//for user module
+			'common.modules.user.models.*',
+        	'common.modules.user.components.*',		
 		),
 		/* uncomment and set if required */
 		// @see http://www.yiiframework.com/doc/api/1.1/CModule#setModules-detail
 		'modules' => array( 
 			'gii' => array(
 				'class' => 'system.gii.GiiModule',
-				'password' => 'cnwin2013',
+				'password' => 'weison',
 				'generatorPaths' => array(
-					'common.extensions.giiplus', 
-					'ext.ajaxgii',
-					'bootstrap.gii'
+					'common.extensions.booster.src.gii', 					
 				)
-			),			
+			),
+
+			'user'=>array(
+				'class' => 'common.modules.user.UserModule',
+	            # encrypting method (php hash function)
+	            'hash' => 'md5',
+	            # send activation email
+	            'sendActivationMail' => true,
+	            # allow access for non-activated users
+	            'loginNotActiv' => false,
+	            # activate user on registration (only sendActivationMail = false)
+	            'activeAfterRegister' => false,
+	            # automatically login from registration
+	            'autoLogin' => true,
+	            # registration path
+	            'registrationUrl' => array('/user/registration'),
+	            # recovery password path
+	            'recoveryUrl' => array('/user/recovery'),
+	            # login form path
+	            'loginUrl' => array('/user/login'),
+	            # page after login
+	            'returnUrl' => array('/user/profile'),
+	            # page after logout
+	            'returnLogoutUrl' => array('/user/login'),
+	        ),				
 		), 
 		'components' => array(
 			'user' => array(
@@ -101,16 +127,10 @@ return CMap::mergeArray(
 				'charset' => 'utf8'
 			),	
 
-			'log'=>array(
-        		'class'=>'CLogRouter',
-        		'routes'=>array(
-            		array(
-                		'class'=>'common.extensions.yii-debug-toolbar.YiiDebugToolbarRoute',
-                	// Access is restricted by default to the localhost
-                	//'ipFilters'=>array('127.0.0.1','192.168.1.*', 88.23.23.0/24),
-            		),
-        		),
-    		),
+    		'booster' => array(
+				'class' => 'common.extensions.booster.src.components.Booster',
+				'responsiveCss' => true,
+			),
 			
 		),
 

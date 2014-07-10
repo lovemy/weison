@@ -127,13 +127,7 @@ return CMap::mergeArray(
 				'timeout' => 3600,
 				//这里千万不要指定cookieMode => none，否则无法对应sessionid导致无法登录，更别说同步了。（有些不负责的博客竟然说同步登录需要设定这个属性为none！！！！太坑爹了。。。）
 			),
-		
-			'statePersister'=>array( //指定cookie加密的状态文件
-				'class'=>'CStatePersister',//指定类		
-				'stateFile'=>'../../common/runtime/state.bin',//配置通用状态文件路径，注意，如果你的站点是分布式的，你必须把该文件复制一份到不同服务器上，否则无法跨域。因为里面有个通用密钥，密钥不同则无法验证身份。
-			),
-		
-			
+						
 			'errorHandler' => array(
 				// @see http://www.yiiframework.com/doc/api/1.1/CErrorHandler#errorAction-detail
 				'errorAction'=>'site/error'

@@ -5,16 +5,6 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="language" content="en" />
         <link rel="icon" href="<?php echo Yii::app()->request->baseUrl."/images/cnwin_ico.png"; ?>" type="image/x-icon"/>
-		<!-- blueprint CSS framework -->
-		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
-		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
-		<!--[if lt IE 8]>
-		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
-		<![endif]-->
-
-		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
-
 		<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 	</head>
 
@@ -22,17 +12,10 @@
 		
 		<?php echo $this->renderPartial('application.views.layouts.header',array()); ?>
 					
-		<div class="container-fluid">
-			<div class="row-fluid">
-				<div class="span2">			
-					<?php
-						if(Yii::app()->controller->id == 'site' && Yii::app()->controller->action->id == 'index') 
-					    	echo $this->renderPartial('application.views.layouts.navbar',array()); 
-					    else
-					    	echo $this->renderPartial('application.views.layouts.nav',array()); 
-					?>
-				</div>
-				<div class="span10">
+		<div class="container">
+			<div class="row">
+			    <?php $isIndex = Yii::app()->controller->id == 'site' && Yii::app()->controller->action->id == 'index';?>
+				<div <?php echo $isIndex ? "class=\"col-md-12\"" : "class=\"col-md-10\"";?>>
 				     <?php if(isset($this->breadcrumbs)):?>
 						<?php if(!(Yii::app()->controller->id == 'site' && Yii::app()->controller->action->id == 'index')){ ?>
 						<div class="breadcrumb" style="background: #dddddd;">
@@ -47,6 +30,15 @@
 
 					<div class="clear"></div>
 				</div>
+
+				<?php  if(!$isIndex){ ?>
+					<div class="col-md-2">			
+						<?php						 
+						    echo $this->renderPartial('application.views.layouts.navbar',array()); 
+						?>
+					</div>
+				<?php } ?>
+				
 			</div>
 		</div>
 

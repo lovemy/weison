@@ -1,0 +1,64 @@
+
+/**
+ * CSS styles for CLinkPager.
+ *
+ * @author hbma
+ */
+
+ul.yiiPager
+{
+	 padding:15px 0 0 0;
+	font-family:"微软雅黑";
+	font-size:14px;
+	
+	line-height:100%;
+	display:inline;		
+}
+
+ul.yiiPager li
+{
+	display:inline;
+}
+
+ul.yiiPager a:link,
+ul.yiiPager a:visited
+{
+  float: left;
+  padding: 0 10px;
+  line-height: 25px;
+  text-decoration: none;
+  border: 1px solid #ddd; 
+  margin:0 4px;
+}
+
+ul.yiiPager .page a
+{
+	font-weight:normal;
+}
+
+ul.yiiPager a:hover
+{
+	  background-color: #f5f5f5;
+}
+
+ul.yiiPager .selected a
+{
+	background:#d93a02;
+	color:#FFFFFF;
+	//border:1px #2e6ab1 solid;
+}
+
+ul.yiiPager .hidden a
+{
+	border:solid 1px #DEDEDE;
+	color:#888888;
+}
+
+/**
+ * Hide first and last buttons by default.
+ */
+ul.yiiPager .first,
+ul.yiiPager .last
+{
+	display:inline;
+}
