@@ -1,54 +1,30 @@
-<div class="wide form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('booster.widgets.TbActiveForm',array(
     'action'=>Yii::app()->createUrl($this->route),
     'method'=>'get',
 )); ?>
 
-    <div class="row">
-        <?php echo $form->label($model,'id'); ?>
-        <?php echo $form->textField($model,'id'); ?>
-    </div>
+        <?php echo $form->textFieldGroup($model,'id',array('widgetOptions'=>array('htmlOptions'=>array()))); ?>
 
-    <div class="row">
-        <?php echo $form->label($model,'username'); ?>
-        <?php echo $form->textField($model,'username',array('size'=>20,'maxlength'=>20)); ?>
-    </div>
+        <?php echo $form->textFieldGroup($model,'username',array('widgetOptions'=>array('htmlOptions'=>array()))); ?>
 
-    <div class="row">
-        <?php echo $form->label($model,'email'); ?>
-        <?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>128)); ?>
-    </div>
+        <?php echo $form->textFieldGroup($model,'email',array('widgetOptions'=>array('htmlOptions'=>array()))); ?>
 
-    <div class="row">
-        <?php echo $form->label($model,'activkey'); ?>
-        <?php echo $form->textField($model,'activkey',array('size'=>60,'maxlength'=>128)); ?>
-    </div>
+        <?php echo $form->textFieldGroup($model,'activkey',array('widgetOptions'=>array('htmlOptions'=>array()))); ?>
 
-    <div class="row">
-        <?php echo $form->label($model,'create_at'); ?>
-        <?php echo $form->textField($model,'create_at'); ?>
-    </div>
+        <?php echo $form->textFieldGroup($model,'create_at',array('widgetOptions'=>array('htmlOptions'=>array()))); ?>
 
-    <div class="row">
-        <?php echo $form->label($model,'lastvisit_at'); ?>
-        <?php echo $form->textField($model,'lastvisit_at'); ?>
-    </div>
+        <?php echo $form->textFieldGroup($model,'lastvisit_at',array('widgetOptions'=>array('htmlOptions'=>array()))); ?>
 
-    <div class="row">
-        <?php echo $form->label($model,'superuser'); ?>
-        <?php echo $form->dropDownList($model,'superuser',$model->itemAlias('AdminStatus')); ?>
-    </div>
+        <?php echo $form->dropDownListGroup($model,'superuser', array('widgetOptions'=>array('data'=> $model->itemAlias('AdminStatus'), 'htmlOptions'=>array()))); ?>
 
-    <div class="row">
-        <?php echo $form->label($model,'status'); ?>
-        <?php echo $form->dropDownList($model,'status',$model->itemAlias('UserStatus')); ?>
-    </div>
+        <?php echo $form->dropDownListGroup($model,'status', array('widgetOptions'=>array('data'=>$model->itemAlias('UserStatus'), 'htmlOptions'=>array()))); ?>
 
-    <div class="row buttons">
-        <?php echo CHtml::submitButton(UserModule::t('Search')); ?>
+    <div class="form-actions">
+        <?php $this->widget('booster.widgets.TbButton', array(
+            'buttonType' => 'submit',
+            'context'=>'primary',
+            'label'=>'Search',
+        )); ?>
     </div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- search-form -->

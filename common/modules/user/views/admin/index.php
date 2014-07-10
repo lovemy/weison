@@ -27,16 +27,19 @@ $('.search-form form').submit(function(){
 ?>
 <h1><?php echo UserModule::t("Manage Users"); ?></h1>
 
-<p><?php echo UserModule::t("You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b> or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done."); ?></p>
+<p><span>
+您可以使用 (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
+或者 <b>=</b>) 等操作符进行搜索.
+</span></p>
 
-<?php echo CHtml::link(UserModule::t('Advanced Search'),'#',array('class'=>'search-button')); ?>
+<?php echo CHtml::link(UserModule::t('高级搜索'),'#',array('class'=>'search-button btn btn-success')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
     'model'=>$model,
 )); ?>
 </div><!-- search-form -->
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
+<?php $this->widget('booster.widgets.TbGridView',array(
 	'id'=>'user-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
@@ -45,23 +48,35 @@ $('.search-form form').submit(function(){
 			'name' => 'id',
 			'type'=>'raw',
 			'value' => 'CHtml::link(CHtml::encode($data->id),array("admin/update","id"=>$data->id))',
+			'htmlOptions'=>array(
+               'width'=>'100',               
+               // 'style'=>'text-align:center',
+        	)
 		),
 		array(
 			'name' => 'username',
 			'type'=>'raw',
 			'value' => 'CHtml::link(UHtml::markSearch($data,"username"),array("admin/view","id"=>$data->id))',
+			'htmlOptions'=>array(
+               'width'=>'100',               
+               // 'style'=>'text-align:center',
+        	)
 		),
 		array(
 			'name'=>'email',
 			'type'=>'raw',
 			'value'=>'CHtml::link(UHtml::markSearch($data,"email"), "mailto:".$data->email)',
 		),
-		'create_at',
+		// 'create_at',
 		'lastvisit_at',
 		array(
 			'name'=>'superuser',
 			'value'=>'User::itemAlias("AdminStatus",$data->superuser)',
 			'filter'=>User::itemAlias("AdminStatus"),
+			'htmlOptions'=>array(
+               'width'=>'100',               
+               // 'style'=>'text-align:center',
+        	)
 		),
 		array(
 			'name'=>'status',
@@ -69,7 +84,11 @@ $('.search-form form').submit(function(){
 			'filter' => User::itemAlias("UserStatus"),
 		),
 		array(
-			'class'=>'CButtonColumn',
+			'class'=>'booster.widgets.TbButtonColumn',
+			'htmlOptions'=>array(
+               'width'=>'100',               
+               // 'style'=>'text-align:center',
+        	)
 		),
 	),
 )); ?>

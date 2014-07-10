@@ -51,7 +51,7 @@ $this->menu=array(
 		)
 	);
 	
-	$this->widget('zii.widgets.CDetailView', array(
+	$this->widget('booster.widgets.TbDetailView', array(
 		'data'=>$model,
 		'attributes'=>$attributes,
 	));

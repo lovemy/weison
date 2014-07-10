@@ -3,7 +3,7 @@ $this->widget(
     'booster.widgets.TbNavbar',
     array(
         'type' => 'inverse',
-        'brand' => 'Project name',
+        'brand' => Yii::app()->name,
         'brandUrl' => '#',
         'collapse' => true, // requires bootstrap-responsive.css
         'fixed' => false,
@@ -13,7 +13,7 @@ $this->widget(
                 'class' => 'booster.widgets.TbMenu',
                 'type' => 'navbar',
                 'items' => array(
-                    array('label' => 'Home', 'url' => '#', 'active' => true),
+                    array('label' => '首 页', 'url' => '#', 'active' => true),
                     array('label' => 'Link', 'url' => '#'),
                     array(
                         'label' => 'Dropdown',
@@ -22,7 +22,7 @@ $this->widget(
                             array('label' => 'Action', 'url' => '#'),
                             array('label' => 'Another action', 'url' => '#'),
                             array(
-                                'label' => 'Something else here',
+                                'label' => 'Something',
                                 'url' => '#'
                             ),
                             '---',
@@ -42,20 +42,18 @@ $this->widget(
                 'type' => 'navbar',
                 'htmlOptions' => array('class' => 'pull-right'),
                 'items' => array(
-                    array('label' => 'Link', 'url' => '#'),
+                    array('label' => date("Y-m-d H:i:s"), 'url' => '#'),
                     '---',
                     array(
-                        'label' => 'Dropdown',
+                        'label' => Yii::app()->user->name,
                         'url' => '#',
-                        'items' => array(
-                            array('label' => 'Action', 'url' => '#'),
-                            array('label' => 'Another action', 'url' => '#'),
+                        'items' => array(                            
                             array(
-                                'label' => 'Something else here',
-                                'url' => '#'
+                                'label' => '用户相关',
+                                'url' => Yii::app()->createUrl('user/profile'),
                             ),
                             '---',
-                            array('label' => 'Separated link', 'url' => '#'),
+                            array('label' => '退 出', 'url' => Yii::app()->createUrl('user/logout')),
                         )
                     ),
                 ),

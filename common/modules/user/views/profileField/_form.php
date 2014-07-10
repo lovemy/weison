@@ -6,19 +6,7 @@
 
 	<?php echo CHtml::errorSummary($model); ?>
 	
-	<div class="row varname">
-		<?php echo CHtml::activeLabelEx($model,'varname'); ?>
-		<?php echo (($model->id)?CHtml::activeTextField($model,'varname',array('size'=>60,'maxlength'=>50,'readonly'=>true)):CHtml::activeTextField($model,'varname',array('size'=>60,'maxlength'=>50))); ?>
-		<?php echo CHtml::error($model,'varname'); ?>
-		<p class="hint"><?php echo UserModule::t("Allowed lowercase letters and digits."); ?></p>
-	</div>
 
-	<div class="row title">
-		<?php echo CHtml::activeLabelEx($model,'title'); ?>
-		<?php echo CHtml::activeTextField($model,'title',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo CHtml::error($model,'title'); ?>
-		<p class="hint"><?php echo UserModule::t('Field name on the language of "sourceLanguage".'); ?></p>
-	</div>
 
 	<div class="row field_type">
 		<?php echo CHtml::activeLabelEx($model,'field_type'); ?>
@@ -130,3 +118,36 @@
 	</fieldset>
 	</form>
 </div>
+
+
+
+<?php $form=$this->beginWidget('booster.widgets.TbActiveForm',array(
+	'id'=>'test-form',
+	'enableAjaxValidation'=>false,
+)); ?>
+
+<p class="help-block">带<span class="required">*</span>为必填内容.</p>
+
+<?php echo $form->errorSummary($model); ?>
+    
+
+	<?php echo (($model->id)?$form->textFieldGroup($model,'varname',array('widgetOptions'=>array('htmlOptions'=>array('readonly'=>'true')))):$form->textFieldGroup($model,'varname',array('widgetOptions'=>array('htmlOptions'=>array())))); ?>
+    <p class="hint"><?php echo UserModule::t("Allowed lowercase letters and digits."); ?></p>		
+
+	<?php echo $form->textFieldGroup($model,'title',array('widgetOptions'=>array('htmlOptions'=>array()))); ?>
+	<p class="hint"><?php echo UserModule::t('Field name on the language of "sourceLanguage".'); ?></p>
+	
+	<?php echo (($model->id)? $form->textFieldGroup($model,'field_type',array('widgetOptions'=>array('htmlOptions'=>array('readonly'=>'true')))) : $form->dropDownListGroup($model,'field_type',array('widgetOptions'=>array('data'=>ProfileField::itemAlias('field_type'), 'htmlOptions'=>array())))); ?>
+	<p class="hint"><?php echo UserModule::t('Field type column in the database.'); ?></p>
+
+	<?php //echo $form->dropDownListGroup($model,'status',array('widgetOptions'=>array('data'=>User::itemAlias('UserStatus'), 'htmlOptions'=>array()))); ?>
+
+<div class="form-actions">
+	<?php $this->widget('booster.widgets.TbButton', array(
+			'buttonType'=>'submit',
+			'context'=>'primary',
+			'label'=>$model->isNewRecord ? '创 建' : '保 存',
+		)); ?>
+</div>
+
+<?php $this->endWidget(); ?>
