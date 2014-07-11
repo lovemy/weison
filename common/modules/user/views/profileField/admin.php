@@ -30,11 +30,11 @@ $('.search-form form').submit(function(){
 或者 <b>=</b>) 等操作符进行搜索.
 </span></p>
 
-<?php echo CHtml::link(UserModule::t('高级搜索'),'#',array('class'=>'search-button btn btn-success')); ?>
+<?php //echo CHtml::link(UserModule::t('高级搜索'),'#',array('class'=>'search-button btn btn-success')); ?>
 <div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-    'model'=>$model,
-)); ?>
+<?php //$this->renderPartial('_search',array(
+   // 'model'=>$model,
+//)); ?>
 </div><!-- search-form -->
 
 <?php $this->widget('booster.widgets.TbGridView', array(

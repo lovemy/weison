@@ -16,8 +16,7 @@ $this->menu=array(
 
 <h1><?php echo UserModule::t("Change password"); ?></h1>
 
-<div class="form">
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('booster.widgets.TbActiveForm',array(
 	'id'=>'changepassword-form',
 	'enableAjaxValidation'=>true,
 	'clientOptions'=>array(
@@ -25,34 +24,22 @@ $this->menu=array(
 	),
 )); ?>
 
-	<p class="note"><?php echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></p>
-	<?php echo $form->errorSummary($model); ?>
+<p class="help-block">带<span class="required">*</span>为必填内容.</p>
+
+<?php echo $form->errorSummary($model); ?>
 	
-	<div class="row">
-	<?php echo $form->labelEx($model,'oldPassword'); ?>
-	<?php echo $form->passwordField($model,'oldPassword'); ?>
-	<?php echo $form->error($model,'oldPassword'); ?>
-	</div>
+	<?php echo $form->passwordFieldGroup($model,'oldPassword',array('widgetOptions'=>array('htmlOptions'=>array()))); ?>
+
+	<?php echo $form->passwordFieldGroup($model,'password',array('widgetOptions'=>array('htmlOptions'=>array()))); ?>
+
+	<?php echo $form->passwordFieldGroup($model,'verifyPassword',array('widgetOptions'=>array('htmlOptions'=>array()))); ?>
 	
-	<div class="row">
-	<?php echo $form->labelEx($model,'password'); ?>
-	<?php echo $form->passwordField($model,'password'); ?>
-	<?php echo $form->error($model,'password'); ?>
-	<p class="hint">
-	<?php echo UserModule::t("Minimal password length 4 symbols."); ?>
-	</p>
-	</div>
-	
-	<div class="row">
-	<?php echo $form->labelEx($model,'verifyPassword'); ?>
-	<?php echo $form->passwordField($model,'verifyPassword'); ?>
-	<?php echo $form->error($model,'verifyPassword'); ?>
-	</div>
-	
-	
-	<div class="row submit">
-	<?php echo CHtml::submitButton(UserModule::t("Save")); ?>
-	</div>
+<div class="form-actions">
+	<?php $this->widget('booster.widgets.TbButton', array(
+			'buttonType'=>'submit',
+			'context'=>'primary',
+			'label'=>'保存修改',
+		)); ?>
+</div>
 
 <?php $this->endWidget(); ?>
-</div><!-- form -->

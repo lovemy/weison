@@ -8,6 +8,8 @@ return array(
     'Login' => '登录',
     'Mobile'=>'手机号',
     'Password'=>'密码',
+    'Old Password'=>'原密码',
+    'Old Password is incorrect.'=>'原密码错误',
     'VerifyPassword'=>'确认密码',
     'Logout' => '登出',
     'username' => "用户名",
@@ -131,5 +133,7 @@ return array(
     'The value of the default field (database).' => '数据库中的缺省值',
     'Display order of fields.' => '显示字段排序',
 	'Not visited' => '未访问',
+    'Changes is saved.' => '更改信息已保存',
+    'Field name on the language of "sourceLanguage".' => '说明标题',
 
 );
