@@ -4,7 +4,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="language" content="en" />
-        <link rel="icon" href="<?php echo Yii::app()->request->baseUrl."/images/cnwin_ico.png"; ?>" type="image/x-icon"/>
+        <link rel="icon" href="<?php echo Core::getSiteParam('frontend_icon');?>" type="image/x-icon"/>
 		<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 	</head>
 

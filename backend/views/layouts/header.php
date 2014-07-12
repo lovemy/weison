@@ -3,7 +3,7 @@ $this->widget(
     'booster.widgets.TbNavbar',
     array(
         'type' => 'inverse',
-        'brand' => Yii::app()->name,
+        'brand' => Core::getSiteParam('backend_name'),
         'brandUrl' => '#',
         'collapse' => true, // requires bootstrap-responsive.css
         'fixed' => false,
@@ -16,10 +16,10 @@ $this->widget(
                     array('label' => '首 页', 'url' => '#', 'active' => true),
                     array('label' => 'Link', 'url' => '#'),
                     array(
-                        'label' => 'Dropdown',
+                        'label' => '网站设置',
                         'url' => '#',
                         'items' => array(
-                            array('label' => 'Action', 'url' => '#'),
+                            array('label' => '基本参数设置', 'url' => Yii::app()->createUrl('siteSetting/view')),
                             array('label' => 'Another action', 'url' => '#'),
                             array(
                                 'label' => 'Something',
