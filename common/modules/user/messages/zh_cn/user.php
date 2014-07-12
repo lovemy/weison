@@ -62,7 +62,7 @@ return array(
     'Please check your email. An instructions was sent to your email address.' => "请检查邮箱，点击找回密码的链接.",
 	'Thank you for your registration. Please {{login}}.' =>  '注册成功, 请登录 {{login}}.',
 	'Thank you for your registration. Contact Admin to activate your account.' =>  'Thank you for your registration. Contact Admin to activate your account.',
-    'Restore' => '恢复',
+    'Restore' => '找回密码',
     'Please enter your login or email addres.' => "请输入用户名或者电子邮件地址.",
     'Incorrect recovery link.' => '错误的恢复链接.',
     'Already exists.' => '已经存在.',
@@ -135,5 +135,6 @@ return array(
 	'Not visited' => '未访问',
     'Changes is saved.' => '更改信息已保存',
     'Field name on the language of "sourceLanguage".' => '说明标题',
+    'email address is not in a valid format.' => '邮箱格式错误',
 
 );

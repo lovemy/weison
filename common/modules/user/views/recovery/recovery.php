@@ -13,21 +13,23 @@ $this->breadcrumbs=array(
 </div>
 <?php else: ?>
 
-<div class="form">
-<?php echo CHtml::beginForm(); ?>
+<?php $form=$this->beginWidget('booster.widgets.TbActiveForm',array(
+	'id'=>'recovery-form',
+	'enableAjaxValidation'=>false,
+)); ?>
 
-	<?php echo CHtml::errorSummary($form); ?>
+	<?php echo $form->errorSummary($fmodel); ?>
 	
-	<div class="row">
-		<?php echo CHtml::activeLabel($form,'login_or_email'); ?>
-		<?php echo CHtml::activeTextField($form,'login_or_email') ?>
-		<p class="hint"><?php echo UserModule::t("Please enter your login or email addres."); ?></p>
-	</div>
-	
-	<div class="row submit">
-		<?php echo CHtml::submitButton(UserModule::t("Restore")); ?>
+	<?php echo $form->textFieldGroup($fmodel,'login_or_email',array('widgetOptions'=>array('htmlOptions'=>array()))); ?>	
+	<p class="hint"><?php echo UserModule::t("Please enter your login or email addres."); ?></p>
+
+	<div class="form-actions">
+		<?php $this->widget('booster.widgets.TbButton', array(
+				'buttonType'=>'submit',
+				'context'=>'primary',
+				'label'=>'找回密码',
+			)); ?>
 	</div>
 
-<?php echo CHtml::endForm(); ?>
-</div><!-- form -->
+<?php $this->endWidget(); ?>
 <?php endif; ?>

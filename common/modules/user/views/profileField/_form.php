@@ -31,7 +31,7 @@
 	<?php echo (($model->id)? $form->textFieldGroup($model,'field_type',array('widgetOptions'=>array('htmlOptions'=>array('readonly'=>'true')))) : $form->dropDownListGroup($model,'field_type',array('widgetOptions'=>array('data'=>ProfileField::itemAlias('field_type'), 'htmlOptions'=>array())))); ?>
 	<p class="hint"><?php echo UserModule::t('Field type column in the database.'); ?></p>
 
-	<?php echo (($model->id)? $form->textFieldGroup($model,'field_size',array('widgetOptions'=>array('htmlOptions'=>array('readonly'=>'true')))) : $form->textFieldGroup($model,'varname',array('widgetOptions'=>array('htmlOptions'=>array())))); ?>
+	<?php echo (($model->id)? $form->textFieldGroup($model,'field_size',array('widgetOptions'=>array('htmlOptions'=>array('readonly'=>'true')))) : $form->textFieldGroup($model,'field_size',array('widgetOptions'=>array('htmlOptions'=>array())))); ?>
 	<p class="hint"><?php echo UserModule::t('Field size column in the database.'); ?></p>
 
 	<?php echo $form->textFieldGroup($model,'field_size_min',array('widgetOptions'=>array('htmlOptions'=>array()))); ?>
@@ -52,7 +52,7 @@
 	<?php echo $form->textFieldGroup($model,'other_validator',array('widgetOptions'=>array('htmlOptions'=>array()))); ?>
 	<p class="hint"><?php echo UserModule::t('JSON string (example: {example}).',array('{example}'=>CJavaScript::jsonEncode(array('file'=>array('types'=>'jpg, gif, png'))))); ?></p>
 
-	<?php echo (($model->id)? $form->textFieldGroup($model,'default',array('widgetOptions'=>array('htmlOptions'=>array('readonly'=>'true')))) : $form->textFieldGroup($model,'varname',array('widgetOptions'=>array('htmlOptions'=>array())))); ?>
+	<?php echo (($model->id)? $form->textFieldGroup($model,'default',array('widgetOptions'=>array('htmlOptions'=>array('readonly'=>'true')))) : $form->textFieldGroup($model,'default',array('widgetOptions'=>array('htmlOptions'=>array())))); ?>
 	<p class="hint"><?php echo UserModule::t('The value of the default field (database).'); ?></p>
 
 	<?php 

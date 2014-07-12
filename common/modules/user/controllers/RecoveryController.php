@@ -8,7 +8,7 @@ class RecoveryController extends Controller
 	 * Recovery password
 	 */
 	public function actionRecovery () {
-		$form = new UserRecoveryForm;
+		$fmodel = new UserRecoveryForm;
 		if (Yii::app()->user->id) {
 		    	$this->redirect(Yii::app()->controller->module->returnUrl);
 		    } else {
@@ -38,9 +38,9 @@ class RecoveryController extends Controller
 		    		}
 		    	} else {
 			    	if(isset($_POST['UserRecoveryForm'])) {
-			    		$form->attributes=$_POST['UserRecoveryForm'];
-			    		if($form->validate()) {
-			    			$user = User::model()->notsafe()->findbyPk($form->user_id);
+			    		$fmodel->attributes=$_POST['UserRecoveryForm'];
+			    		if($fmodel->validate()) {
+			    			$user = User::model()->notsafe()->findbyPk($fmodel->user_id);
 							$activation_url = 'http://' . $_SERVER['HTTP_HOST'].$this->createUrl(implode(Yii::app()->controller->module->recoveryUrl),array("activkey" => $user->activkey, "email" => $user->email));
 							
 							$subject = UserModule::t("You have requested the password recovery site {site_name}",
@@ -59,7 +59,7 @@ class RecoveryController extends Controller
 			    			$this->refresh();
 			    		}
 			    	}
-		    		$this->render('recovery',array('form'=>$form));
+		    		$this->render('recovery',array('fmodel'=>$fmodel));
 		    	}
 		    }
 	}

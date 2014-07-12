@@ -23,7 +23,7 @@
         <?php $this->widget('booster.widgets.TbButton', array(
             'buttonType' => 'submit',
             'context'=>'primary',
-            'label'=>'Search',
+            'label'=>'搜 索',
         )); ?>
     </div>
 
