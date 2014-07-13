@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Site Settings'=>array('view'),
+	'站点基本信息'=>array('view'),
 );
 
 	$this->menu=array(

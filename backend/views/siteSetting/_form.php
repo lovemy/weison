@@ -3,7 +3,7 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-<p class="help-block">Fields with <span class="required">*</span> are required.</p>
+<p class="help-block">带<span class="required">*</span>为必填内容.</p>
 
 <?php echo $form->errorSummary($model); ?>
 
@@ -25,7 +25,7 @@
 	<?php $this->widget('booster.widgets.TbButton', array(
 			'buttonType'=>'submit',
 			'context'=>'primary',
-			'label'=>$model->isNewRecord ? 'Create' : 'Save',
+			'label'=> '保 存',
 		)); ?>
 </div>
 

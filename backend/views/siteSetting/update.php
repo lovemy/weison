@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
-	'Site Settings'=>array('view'),	
-	'Update',
+	'站点基本信息'=>array('view'),	
+	'编辑',
 );
 
 	$this->menu=array(
@@ -9,6 +9,6 @@ $this->breadcrumbs=array(
 	);
 	?>
 
-	<h1>Update SiteSetting <?php echo $model->id; ?></h1>
+	<h1>编辑网站信息</h1>
 
 <?php echo $this->renderPartial('_form',array('model'=>$model)); ?>
