@@ -9,7 +9,8 @@
 	</head>
 
 	<body>
-			
+	    <?php echo $this->renderPartial('application.views.layouts.header',array()); ?>
+	    		
 		<div class="container">			
 			<div class="row">	
 			    <br/><br/><br/><br/><br/>	    
