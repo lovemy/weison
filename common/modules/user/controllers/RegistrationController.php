@@ -2,7 +2,8 @@
 
 class RegistrationController extends Controller
 {
-	public $defaultAction = 'registration';
+	public $layout = '//layouts/user';
+    public $defaultAction = 'registration';
 	
 	/**
 	 * Declares class-based actions.
@@ -13,6 +14,8 @@ class RegistrationController extends Controller
 			'captcha'=>array(
 				'class'=>'CCaptchaAction',
 				'backColor'=>0xFFFFFF,
+                'maxLength'=>4,
+                'minLength'=>4,
 			),
 		);
 	}

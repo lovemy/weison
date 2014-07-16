@@ -1,9 +1,17 @@
+<?php $this->pageTitle=Yii::app()->name . ' - '.UserModule::t("Login");
+$this->breadcrumbs=array(
+	UserModule::t("Login"),
+);
+?>
+
+<h1><?php echo UserModule::t("Login"); ?></h1>
+
 <?php 
 $form = $this->beginWidget(
     'booster.widgets.TbActiveForm',
     array(
         'id' => 'verticalForm',
-        'htmlOptions' => array('class' => 'well'), // for inset effect
+        'htmlOptions' => array('class' => 'well panel panel-default'), // for inset effect
     )
 );
  
