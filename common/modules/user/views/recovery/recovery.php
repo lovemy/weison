@@ -16,6 +16,7 @@ $this->breadcrumbs=array(
 <?php $form=$this->beginWidget('booster.widgets.TbActiveForm',array(
 	'id'=>'recovery-form',
 	'enableAjaxValidation'=>false,
+	'htmlOptions'=>array('class'=>'panel panel-default','style'=>'padding:20px;'),
 )); ?>
 
 	<?php echo $form->errorSummary($fmodel); ?>

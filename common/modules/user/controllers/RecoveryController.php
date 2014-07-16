@@ -2,6 +2,7 @@
 
 class RecoveryController extends Controller
 {
+	public $layout = '//layouts/user';
 	public $defaultAction = 'recovery';
 	
 	/**

@@ -4,7 +4,7 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1><?php echo UserModule::t("Registration"); ?></h1>
+<h1><?php echo UserModule::t("Registration"); ?><span class="pull-right" style="font-size:20px;margin-top:10px;"><a href="<?php echo Yii::app()->createUrl('user/login');?>">已有账户,去登录</a></span></h1>
 
 <?php if(Yii::app()->user->hasFlash('registration')): ?>
 <div class="success">
@@ -69,7 +69,7 @@ $this->breadcrumbs=array(
 	<br/>
 	<?php $this->widget(
 	    'booster.widgets.TbButton',
-	    array('buttonType' => 'submit', 'label' => '注 册', 'context' => 'success',)
+	    array('buttonType' => 'submit', 'label' => '注 册', 'context' => 'success','size'=>'large','htmlOptions'=>array('class'=>'btn-block'))
 	);?>	
 
 <?php $this->endWidget(); ?>
