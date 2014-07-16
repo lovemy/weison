@@ -55,8 +55,13 @@ class SiteController extends Controller {
 	    }  
 	}
 
-	public function actionTest()
+	public function actionCharts()
 	{
-		$this->render('test');
+		$this->render('charts');
+	}
+
+	public function actionHelp()
+	{
+		$this->render('help');
 	}
 }

@@ -11,7 +11,8 @@ $form = $this->beginWidget(
     'booster.widgets.TbActiveForm',
     array(
         'id' => 'verticalForm',
-        'htmlOptions' => array('class' => 'well panel panel-default'), // for inset effect
+        'htmlOptions' => array('class'=>'panel panel-default',
+		'style'=>'padding:20px;',), // for inset effect
     )
 );
  
