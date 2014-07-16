@@ -10,7 +10,7 @@ $this->breadcrumbs=array(
 $form = $this->beginWidget(
     'booster.widgets.TbActiveForm',
     array(
-        'id' => 'verticalForm',
+        'id' => 'login-form',
         'htmlOptions' => array('class'=>'panel panel-default',
 		'style'=>'padding:20px;',), // for inset effect
     )
