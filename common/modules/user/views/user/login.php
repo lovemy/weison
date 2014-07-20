@@ -4,7 +4,7 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1><?php echo UserModule::t("Login"); ?><span class="pull-right" style="font-size:20px;margin-top:10px;"><a href="<?php echo Yii::app()->createUrl('user/registration');?>">还没有账户,去注册</a></span></h1>
+<h1><?php echo UserModule::t("Login"); ?><?php if(!stristr($_SERVER['HTTP_HOST'],"admin.weison.com")){ ?><span class="pull-right" style="font-size:20px;margin-top:10px;"><a href="<?php echo Yii::app()->createUrl('user/registration');?>">还没有账户,去注册</a></span><?php } ?></h1>
 
 <?php 
 $form = $this->beginWidget(
