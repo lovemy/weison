@@ -10,9 +10,8 @@ class UserIdentity extends CUserIdentity
 	private $_id;
 	const ERROR_EMAIL_INVALID=3;
 	const ERROR_STATUS_NOTACTIV=4;
-	const ERROR_STATUS_BAN=5;
-	const ERROR_STATUS_NOTPARTNER=6;
-	const ERROR_STATUS_NOTADMIN=7;
+	const ERROR_STATUS_BAN=5;	
+	const ERROR_STATUS_NOTADMIN=6;
 	
 	/**
 	 * Authenticates a user.

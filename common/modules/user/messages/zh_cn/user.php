@@ -136,5 +136,6 @@ return array(
     'Changes is saved.' => '更改信息已保存',
     'Field name on the language of "sourceLanguage".' => '说明标题',
     'email address is not in a valid format.' => '邮箱格式错误',
+    'You account is not admin.' => '该帐号不是管理员',
 
 );
