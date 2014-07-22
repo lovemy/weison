@@ -56,7 +56,7 @@ return CMap::mergeArray(
 			/* 'common.extensions.behaviors.*', */
 			/* 'common.extensions.validators.*', */
 			'common.models.*',            
-            //'common.extensions.yii-debug-toolbar.*', //our extension            
+            			//'common.extensions.yii-debug-toolbar.*', //our extension            
 			'common.messages.*',			
 			
 			// uncomment if behaviors are required
@@ -70,7 +70,10 @@ return CMap::mergeArray(
 
 			//for user module
 			'common.modules.user.models.*',
-        	'common.modules.user.components.*',
+        			'common.modules.user.components.*',
+
+        			//for mailer extensions
+        			'common.extensions.mailer.YiiMailer',
 		),
 		/* uncomment and set if required */
 		// @see http://www.yiiframework.com/doc/api/1.1/CModule#setModules-detail
@@ -149,5 +152,6 @@ return CMap::mergeArray(
 		/* 'cache' => $params['cache.core'], */
 		/* 'contentCache' => $params['cache.content'] */
 	),
+	
 	CMap::mergeArray($mainEnvConfiguration, $mainLocalConfiguration)
 );

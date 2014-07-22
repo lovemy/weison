@@ -7,30 +7,23 @@ $this->breadcrumbs=array(
 
 <h1><?php echo UserModule::t("Change password"); ?></h1>
 
+<?php $form=$this->beginWidget('booster.widgets.TbActiveForm',array(
+	'id'=>'changepassword-form',
+	'enableAjaxValidation'=>false,
+	'htmlOptions'=>array('class'=>'panel panel-default','style'=>'padding:20px;'),
+)); ?>
 
-<div class="form">
-<?php echo CHtml::beginForm(); ?>
+<?php echo $form->errorSummary($fmodel); ?>
+	
+	<?php echo $form->passwordFieldGroup($fmodel,'password',array('widgetOptions'=>array('htmlOptions'=>array()))); ?>	
+	<?php echo $form->passwordFieldGroup($fmodel,'verifyPassword',array('widgetOptions'=>array('htmlOptions'=>array()))); ?>		
 
-	<p class="note"><?php echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></p>
-	<?php echo CHtml::errorSummary($form); ?>
-	
-	<div class="row">
-	<?php echo CHtml::activeLabelEx($form,'password'); ?>
-	<?php echo CHtml::activePasswordField($form,'password'); ?>
-	<p class="hint">
-	<?php echo UserModule::t("Minimal password length 4 symbols."); ?>
-	</p>
-	</div>
-	
-	<div class="row">
-	<?php echo CHtml::activeLabelEx($form,'verifyPassword'); ?>
-	<?php echo CHtml::activePasswordField($form,'verifyPassword'); ?>
-	</div>
-	
-	
-	<div class="row submit">
-	<?php echo CHtml::submitButton(UserModule::t("Save")); ?>
+	<div class="form-actions">
+		<?php $this->widget('booster.widgets.TbButton', array(
+				'buttonType'=>'submit',
+				'context'=>'primary',
+				'label'=>'保存修改',
+			)); ?>
 	</div>
 
-<?php echo CHtml::endForm(); ?>
-</div><!-- form -->
+<?php $this->endWidget(); ?>

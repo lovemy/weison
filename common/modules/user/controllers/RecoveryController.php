@@ -32,7 +32,7 @@ class RecoveryController extends Controller
 								$this->redirect(Yii::app()->controller->module->recoveryUrl);
 							}
 						} 
-						$this->render('changepassword',array('form'=>$form2));
+						$this->render('changepassword',array('fmodel'=>$form2));
 		    		} else {
 		    			Yii::app()->user->setFlash('recoveryMessage',UserModule::t("Incorrect recovery link."));
 						$this->redirect(Yii::app()->controller->module->recoveryUrl);
@@ -43,19 +43,8 @@ class RecoveryController extends Controller
 			    		if($fmodel->validate()) {
 			    			$user = User::model()->notsafe()->findbyPk($fmodel->user_id);
 							$activation_url = 'http://' . $_SERVER['HTTP_HOST'].$this->createUrl(implode(Yii::app()->controller->module->recoveryUrl),array("activkey" => $user->activkey, "email" => $user->email));
-							
-							$subject = UserModule::t("You have requested the password recovery site {site_name}",
-			    					array(
-			    						'{site_name}'=>Yii::app()->name,
-			    					));
-			    			$message = UserModule::t("You have requested the password recovery site {site_name}. To receive a new password, go to {activation_url}.",
-			    					array(
-			    						'{site_name}'=>Yii::app()->name,
-			    						'{activation_url}'=>$activation_url,
-			    					));
-							
-			    			echo Mailer::send($user->email,$subject,$message); exit();
-			    			
+							$data = array('url'=>$activation_url);
+							SendMail::send('recovery',$data,$user->email,"找回密码");																	    			
 							Yii::app()->user->setFlash('recoveryMessage',UserModule::t("Please check your email. An instructions was sent to your email address."));
 			    			$this->refresh();
 			    		}

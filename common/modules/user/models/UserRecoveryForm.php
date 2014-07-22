@@ -18,7 +18,7 @@ class UserRecoveryForm extends CFormModel {
 		return array(
 			// username and password are required
 			array('login_or_email', 'required'),
-			array('login_or_email', 'email'),
+			//array('login_or_email', 'email'),
 			// password needs to be authenticated
 			array('login_or_email', 'checkexists'),
 		);
