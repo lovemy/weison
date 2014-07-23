@@ -28,7 +28,13 @@ $this->widget(
 echo "</div>
 <div class=\"col-md-6\">
   <h4><a href=\"".Yii::app()->createUrl('user/recovery')."\">忘记密码，现在找回</a></h4>
-</div></div>";
+</div></div>"; 
+
  
 $this->endWidget();
 unset($form);?>
+
+<div  class="container">
+    <a  href="<?php echo Sina::getAuthorizeCodeURL();?>"　title="新浪微博"><img src="<?php echo  Yii::app()->params['imgUrl'];?>/login/sina_logo.png" alt="新浪微博">微博登录</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a  href="<?php echo Qq::getAuthorizeCodeURL();?>"　title="腾讯互联"><img src="<?php echo  Yii::app()->params['imgUrl'];?>/login/qq_logo.png" alt="腾讯互联">QQ登录</a>
+</div>
