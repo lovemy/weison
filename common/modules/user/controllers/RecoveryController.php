@@ -44,7 +44,7 @@ class RecoveryController extends Controller
 			    			$user = User::model()->notsafe()->findbyPk($fmodel->user_id);
 							$activation_url = 'http://' . $_SERVER['HTTP_HOST'].$this->createUrl(implode(Yii::app()->controller->module->recoveryUrl),array("activkey" => $user->activkey, "email" => $user->email));
 							$data = array('url'=>$activation_url);
-							SendMail::send('recovery',$data,$user->email,"找回密码");																	    			
+							Mailer::send('recovery',$data,$user->email,"找回密码","");																	    			
 							Yii::app()->user->setFlash('recoveryMessage',UserModule::t("Please check your email. An instructions was sent to your email address."));
 			    			$this->refresh();
 			    		}

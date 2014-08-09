@@ -31,9 +31,13 @@ class Mailer{
             //发送邮件
             if ($mail->send()) {                  
                     return true;             
-            } else {                     
-                    Yii::app()->user->setFlash('error','Error while sending email: '.$mail->getError()); 
-                    return false;                                        
+            } else {     
+                    if($mode == "console"){
+                        return false;
+                    }else{
+                        Yii::app()->user->setFlash('error','Error while sending email: '.$mail->getError()); 
+                        return false;
+                    }                                                        
             }
      }
 }

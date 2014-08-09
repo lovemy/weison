@@ -54,8 +54,8 @@ class RegistrationController extends Controller
                         $profile->save();
                         if (Yii::app()->controller->module->sendActivationMail) {
                             $activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $model->activkey, "email" => $model->email));
-                            $data = array('url' =>$activation_url); 
-                            $res = SendMail::send('registration',$data,$model->email,'用户激活');                             
+                            $data = array('url' =>$activation_url);                                                
+                            $res = Mailer::send('recovery',$data,$model->email,"用户激活","");                            
                         }
 
                         if ((Yii::app()->controller->module->loginNotActiv||(Yii::app()->controller->module->activeAfterRegister&&Yii::app()->controller->module->sendActivationMail==false))&&Yii::app()->controller->module->autoLogin) {

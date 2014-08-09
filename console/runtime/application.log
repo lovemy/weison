@@ -408,3 +408,81 @@ Stack trace:
 #10 /home/wwwroot/weison/yiic(3): require_once('/home/wwwroot/w...')
 #11 {main}
 ---
+2014/08/09 15:09:43 [info] [application] $_SERVER=array (
+  'ORBIT_SOCKETDIR' => '/tmp/orbit-mhb',
+  'HOSTNAME' => 'weison',
+  'IMSETTINGS_INTEGRATE_DESKTOP' => 'yes',
+  'GIO_LAUNCHED_DESKTOP_FILE_PID' => '2750',
+  'TERM' => 'xterm',
+  'SHELL' => '/bin/bash',
+  'XDG_SESSION_COOKIE' => 'c761cc91c707043f65e8aff30000001a-1407590001.17705-1641116259',
+  'HISTSIZE' => '1000',
+  'GTK_RC_FILES' => '/etc/gtk/gtkrc:/home/mhb/.gtkrc-1.2-gnome2',
+  'WINDOWID' => '75497475',
+  'QTDIR' => '/usr/lib64/qt-3.3',
+  'QTINC' => '/usr/lib64/qt-3.3/include',
+  'IMSETTINGS_MODULE' => 'IBus',
+  'USER' => 'mhb',
+  'LS_COLORS' => 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:',
+  'GNOME_KEYRING_SOCKET' => '/tmp/keyring-1QGdkU/socket',
+  'SSH_AUTH_SOCK' => '/tmp/keyring-1QGdkU/socket.ssh',
+  'SESSION_MANAGER' => 'local/unix:@/tmp/.ICE-unix/2277,unix/unix:/tmp/.ICE-unix/2277',
+  'USERNAME' => 'mhb',
+  'GIO_LAUNCHED_DESKTOP_FILE' => '/home/mhb/桌面/gnome-terminal.desktop',
+  'DESKTOP_SESSION' => 'gnome',
+  'MAIL' => '/var/spool/mail/mhb',
+  'PATH' => '/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/mhb/bin',
+  'QT_IM_MODULE' => 'xim',
+  'PWD' => '/home/wwwroot/weison',
+  'XMODIFIERS' => '@im=ibus',
+  'GDM_KEYBOARD_LAYOUT' => 'us',
+  'LANG' => 'zh_CN.UTF-8',
+  'GNOME_KEYRING_PID' => '2267',
+  'GDM_LANG' => 'zh_CN.UTF-8',
+  'GDMSESSION' => 'gnome',
+  'SSH_ASKPASS' => '/usr/libexec/openssh/gnome-ssh-askpass',
+  'HISTCONTROL' => 'ignoredups',
+  'HOME' => '/home/mhb',
+  'SHLVL' => '2',
+  'GNOME_DESKTOP_SESSION_ID' => 'this-is-deprecated',
+  'LOGNAME' => 'mhb',
+  'QTLIB' => '/usr/lib64/qt-3.3/lib',
+  'CVS_RSH' => 'ssh',
+  'DBUS_SESSION_BUS_ADDRESS' => 'unix:abstract=/tmp/dbus-ScD238hcCo,guid=321a2f0030b75917bf65de450000004e',
+  'LESSOPEN' => '|/usr/bin/lesspipe.sh %s',
+  'WINDOWPATH' => '1',
+  'DISPLAY' => ':0.0',
+  'G_BROKEN_FILENAMES' => '1',
+  'XAUTHORITY' => '/var/run/gdm/auth-for-mhb-oKMQ2a/database',
+  'COLORTERM' => 'gnome-terminal',
+  '_' => '/usr/bin/php',
+  'OLDPWD' => '/home/wwwroot',
+  'PHP_SELF' => 'yiic',
+  'SCRIPT_NAME' => 'yiic',
+  'SCRIPT_FILENAME' => 'yiic',
+  'PATH_TRANSLATED' => 'yiic',
+  'DOCUMENT_ROOT' => '',
+  'REQUEST_TIME_FLOAT' => 1407596983.722558,
+  'REQUEST_TIME' => 1407596983,
+  'argv' => 
+  array (
+    0 => 'yiic',
+    1 => 'sendmail',
+  ),
+  'argc' => 2,
+)
+2014/08/09 15:09:44 [error] [exception.CException] exception 'CException' with message 'Property "CConsoleApplication.user" is not defined.' in /home/wwwroot/weison/common/lib/Yii/base/CComponent.php:130
+Stack trace:
+#0 /home/wwwroot/weison/common/lib/Yii/base/CModule.php(105): CComponent->__get('user')
+#1 /home/wwwroot/weison/common/components/Mailer.php(38): CModule->__get('user')
+#2 /home/wwwroot/weison/console/commands/SendMailCommand.php(21): Mailer::Send('test', '', 'xiaoma21@126.co...', '???????????????...', 'console')
+#3 [internal function]: SendMailCommand->actionSend()
+#4 /home/wwwroot/weison/common/lib/Yii/console/CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(SendMailCommand), Array)
+#5 /home/wwwroot/weison/common/lib/Yii/console/CConsoleCommandRunner.php(67): CConsoleCommand->run(Array)
+#6 /home/wwwroot/weison/common/lib/Yii/console/CConsoleApplication.php(91): CConsoleCommandRunner->run(Array)
+#7 /home/wwwroot/weison/common/lib/Yii/base/CApplication.php(162): CConsoleApplication->processRequest()
+#8 /home/wwwroot/weison/common/lib/Yii/yiic.php(33): CApplication->run()
+#9 /home/wwwroot/weison/console/yiic.php(15): require_once('/home/wwwroot/w...')
+#10 /home/wwwroot/weison/yiic(3): require_once('/home/wwwroot/w...')
+#11 {main}
+---
