@@ -17,6 +17,7 @@ $params = require_once($consoleConfigDir . DIRECTORY_SEPARATOR . 'params.php');
 // Setup some default path aliases. These alias may vary from projects.
 Yii::setPathOfAlias('root', $root);
 Yii::setPathOfAlias('common', $root . DIRECTORY_SEPARATOR . 'common');
+Yii::setPathOfAlias('frontend', $root . DIRECTORY_SEPARATOR . 'frontend');
 
 /* uncomment if the following aliases are required */
 //Yii::setPathOfAlias('show', $root . DIRECTORY_SEPARATOR . 'show');
@@ -52,6 +53,7 @@ return CMap::mergeArray(
 			/*'root.show.components.*',*/
 			/* uncomment to use backend components */
 			/*'root.backend.components.*',*/
+			'common.extensions.mailer.YiiMailer',
 		),
 		/* locate migrations folder if necessary */
 		'commandMap' => array(
