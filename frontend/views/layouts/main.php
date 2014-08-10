@@ -4,6 +4,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="language" content="en" />
+		<meta property="qc:admins" content="55764014461541611166375" />
         <link rel="icon" href="<?php echo Core::getSiteParam('frontend_icon');?>" type="image/x-icon"/>
 		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->params['frontendUrl'];?>/css/styles.css">	
 		<title><?php echo CHtml::encode($this->pageTitle); ?></title>

@@ -10,9 +10,9 @@
 
 class Qq{
 
-	const APPID = '...';
-	const APPKEY = '...';
-	const REDIRECT_URI = '...';
+	const APPID = '101145780';
+	const APPKEY = 'a9931aaa3c79b21ccd4ba297cfe88a65';
+	const REDIRECT_URI = 'http://t.niulanqian.com/user/qqLogin';
 
 	/**
 	 * 获取code,供以后获取accessToken使用
