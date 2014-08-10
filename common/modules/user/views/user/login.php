@@ -34,7 +34,9 @@ echo "</div>
 $this->endWidget();
 unset($form);?>
 
+<?php if(!stristr($_SERVER['HTTP_HOST'],"admin.weison.com")){ ?>
 <div  class="container">
     <a  href="<?php echo Sina::getAuthorizeCodeURL();?>"　title="新浪微博"><img src="<?php echo $this->module->assetsUrl; ?>/images/login/sina_logo.png" alt="新浪微博">微博登录</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a  href="<?php echo Qq::getAuthorizeCodeURL();?>"　title="腾讯互联"><img src="<?php echo $this->module->assetsUrl; ?>/images/login/qq_logo.png" alt="腾讯互联">QQ登录</a>
 </div>
+<?php } ?>
