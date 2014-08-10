@@ -9,7 +9,9 @@
  */
 
 class UserModule extends CWebModule
-{
+{	
+	private$_assetsUrl;
+	
 	/**
 	 * @var int
 	 * @desc items on page
@@ -271,4 +273,16 @@ class UserModule extends CWebModule
 	public function users() {
 		return User;
 	}
+
+	public function getAssetsUrl()
+     	{
+	      if($this->_assetsUrl===null)
+	            $this->_assetsUrl=Yii::app()->getAssetManager()->publish(Yii::getPathOfAlias('common.modules.user.assets'));
+	            return  $this->_assetsUrl;
+     	}
+
+ 	public function setAssetsUrl($value)
+ 	{
+	            $this->_assetsUrl=$value;
+ 	}
 }
