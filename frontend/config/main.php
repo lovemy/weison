@@ -126,7 +126,7 @@ return CMap::mergeArray(
 			),
 		
 			'session' => array(
-				'cookieParams' => array('domain' => 'weison.com', 'lifetime' => 0),//配置会话ID作用域 生命期和超时
+				'cookieParams' => array('domain' => 'niulanqian.com', 'lifetime' => 0),//配置会话ID作用域 生命期和超时
 				'timeout' => 3600,
 				//这里千万不要指定cookieMode => none，否则无法对应sessionid导致无法登录，更别说同步了。（有些不负责的博客竟然说同步登录需要设定这个属性为none！！！！太坑爹了。。。）
 			),

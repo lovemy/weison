@@ -29,15 +29,17 @@ $this->widget(
                     array('label' => '注 册', 'url' => Yii::app()->createUrl('user/registration'),'visible'=>Yii::app()->user->isGuest),
                     '---',
                     array(
-                        'label' => Yii::app()->user->name,
+                        'label' =>Yii::app()->user->id ? (Core::getUser(Yii::app()->user->id)->profile->nickname ? Core::getUser(Yii::app()->user->id)->profile->nickname : Yii::app()->user->name) : '',
                         'url' => '#',
                         'items' => array(
-                            array('label' => '退 出', 'url' => Yii::app()->createUrl('user/logout')),                           
+                            array('label' => '个人信息', 'url' => Yii::app()->createUrl('user/profile')),       
+                            array('label' => '退 出', 'url' => Yii::app()->createUrl('user/logout')),                                                       
                         ),
                         'visible'=>!Yii::app()->user->isGuest,
                     ),                    
                 ),
             ),
+            Yii::app()->user->id  ?  '<img src="'.Core::getUser(Yii::app()->user->id)->profile->avatar_sm.'" class="pull-right" style="margin-top:8px;" />' : '',
         ),
     )
 );

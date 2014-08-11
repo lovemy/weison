@@ -20,34 +20,55 @@ class QqLoginController extends Controller
 		
 		if (Yii::app()->user->isGuest) {
 			if(isset($_GET['code']) && isset($_GET['state'])){
-			    $accessToken = Qq::getAccessToken($_GET['code'], $_GET['state']);
-			    $openid = Qq::getOpenId($accessToken);
-			    $ql = QqLogin::model()->find('openid = :openid',array(':openid'=>$openid));
-			    if($ql){
-			    	$ql->update_at = date("Y-m-d H:i:s");
-			    	if($ql->save(false)){
-			    		$user = $ql->user;
-			    		$this->autoLogin($user);
-			    	}			    	
-			    }else{
-			    	$user = new User;
-			    	$user->username = 'u'.rand(0000,9999).rand(00,11);
-			    	if($user->save(false)){	    		
-			    		$ql = new QqLogin;			    		
-			    		$ql->openid = $openid;
-			    		$ql->access_token = $accessToken;
-			    		$ql->user_id = $user->id;			    		
-			    		$ql->update_at = date("Y-m-d H:i:s");					    		
-			    		if($ql->save(false)){
-			    			$user = $ql->user;
-					    	$this->autoLogin($user);
-			    		}
-			    	}
-
-			    }
+				$accessToken = Qq::getAccessToken($_GET['code'], $_GET['state']);
+				$openid = Qq::getOpenId($accessToken);
+				$qqUser = QqUsers::model()->find('openid = :openid',array(':openid'=>$openid));
+				if(!$qqUser){
+				              $userInfo = json_decode(Qq::getUserInfo($accessToken ,$openid));					
+				    	//首次进入创建网站的用户
+				    	$user = new User;
+				    	$user->username = 'qu_'.strtolower($openid);
+				    	if($user->save(false)){
+				    		//存qq登录表
+				    		$qqUser = new QqUsers;
+				    		$qqUser->user_id = $user->id;
+				    		$qqUser->openid = $openid;
+				    		$qqUser->access_token = $accessToken;
+				    		$qqUser->update_at = date('Y-m-d H:i:s');
+				    		$qqUser->save(false);
+				    		//存网站用户的属性表
+				    		$profile = new Profile;
+				    		$profile->user_id = $user->id;
+				    		$profile->nickname = $userInfo->nickname;
+				    		$profile->gender = $userInfo->gender;
+				    		$profile->born = $userInfo->year;
+				    		$profile->avatar_bg = $userInfo->figureurl_2;
+				    		$profile->avatar_sm = $userInfo->figureurl;
+				    		$profile->save(false);
+				    		//自动登录
+				    		$identity=UserIdentity::createAuthenticatedIdentity($user);
+						$identity->authenticate();				
+						if(Yii::app()->user->login($identity,'')){
+							$this->redirect(Yii::app()->user->returnUrl);
+						}
+				    	}
+				}else{
+					//更新qq登录表
+					$qqUser->access_token = $accessToken;
+					$qqUser->update_at = date('Y-m-d H:i:s');
+					$qqUser->save(false);
+					//查询用户自动登录
+					$user = User::model()->findByPk($qqUser->user_id);
+					$identity=UserIdentity::createAuthenticatedIdentity($user);
+					$identity->authenticate();				
+					if(Yii::app()->user->login($identity,'')){
+						$this->redirect(Yii::app()->user->returnUrl);
+					}
+				}
+			    
 			}
 		} else
-			$this->redirect(Yii::app()->controller->module->returnUrl);			
+			$this->redirect(Yii::app()->user->returnUrl);			
 	}
 
 }

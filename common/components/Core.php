@@ -1,7 +1,6 @@
 <?php 
 class Core{
 	
-
 	public static function getSiteParam($attr)
 	{
 		$siteSetting = SiteSetting::model()->find();
@@ -10,5 +9,12 @@ class Core{
 		}else{
 			return false;
 		}
+	}
+
+
+	public static function getUser($user_id)
+	{
+		$user = User::model()->findByPk($user_id);
+		return $user;
 	}
 }
