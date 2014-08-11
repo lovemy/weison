@@ -10,9 +10,9 @@
 
 class Sina{
 
-	const APPID = '...';
-	const APPKEY = '...';
-	const REDIRECT_URI = '...';	
+	const APPID = '3339557939';
+	const APPKEY = 'ae86803016d136ef11ff3fcc0ec8c9d7';
+	const REDIRECT_URI = 'http://t.niulanqian.com/user/sinaLogin';	
 
 	/**
 	 * 获取code,供以后获取accessToken使用

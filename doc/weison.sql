@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2014 年 08 月 11 日 13:28
+-- 生成日期: 2014 年 08 月 11 日 15:29
 -- 服务器版本: 5.5.28
 -- PHP 版本: 5.3.17
 
@@ -28,23 +28,27 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `ws_profiles` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `nickname` varchar(64) NOT NULL DEFAULT '',
-  `avatar_bg` varchar(256) NOT NULL DEFAULT '',
+  `nickname` varchar(32) NOT NULL DEFAULT '',
   `avatar_sm` varchar(256) NOT NULL DEFAULT '',
+  `avatar_bg` varchar(256) NOT NULL DEFAULT '',
   `gender` varchar(8) NOT NULL DEFAULT '',
+  `born` varchar(64) NOT NULL DEFAULT '',
   `province` int(11) NOT NULL DEFAULT '0',
   `city` int(11) NOT NULL DEFAULT '0',
-  `born` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- 转存表中的数据 `ws_profiles`
 --
 
-INSERT INTO `ws_profiles` (`user_id`, `nickname`, `avatar_bg`, `avatar_sm`, `gender`, `province`, `city`, `born`) VALUES
-(8, '', '', '', '', 0, 0, 0),
-(9, '.', 'http://qzapp.qlogo.cn/qzapp/101145780/10B4C92D99E312BCD34C99A809A691E2/100', 'http://qzapp.qlogo.cn/qzapp/101145780/10B4C92D99E312BCD34C99A809A691E2/30', '男', 0, 0, 1987);
+INSERT INTO `ws_profiles` (`user_id`, `nickname`, `avatar_sm`, `avatar_bg`, `gender`, `born`, `province`, `city`) VALUES
+(1, '', '', '', '', '', 0, 0),
+(2, '', '', '', '', '', 0, 0),
+(3, '灯火阑珊', 'http://q.qlogo.cn/qqapp/101145780/C19E43BA26EBB89914368BFB355CB792/100', 'http://q.qlogo.cn/qqapp/101145780/C19E43BA26EBB89914368BFB355CB792/40', '男', '1987', 0, 0),
+(4, '.', 'http://q.qlogo.cn/qqapp/101145780/10B4C92D99E312BCD34C99A809A691E2/100', 'http://q.qlogo.cn/qqapp/101145780/10B4C92D99E312BCD34C99A809A691E2/40', '男', '1987', 0, 0),
+(10, '灯火2012阑珊', 'http://tp4.sinaimg.cn/1947703131/180/40001367367/1', 'http://tp4.sinaimg.cn/1947703131/180/40001367367/1', '男', '', 0, 0),
+(11, '灯火今夜又阑珊', 'http://tp2.sinaimg.cn/3874850065/180/40061822768/1', 'http://ww3.sinaimg.cn/crop.0.0.459.459.1024/e6f58511gw1ej0d7d6xyij20cs0csq4b.jpg', '男', '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -71,20 +75,20 @@ CREATE TABLE IF NOT EXISTS `ws_profiles_fields` (
   `visible` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `varname` (`varname`,`widget`,`visible`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- 转存表中的数据 `ws_profiles_fields`
 --
 
 INSERT INTO `ws_profiles_fields` (`id`, `varname`, `title`, `field_type`, `field_size`, `field_size_min`, `required`, `match`, `range`, `error_message`, `other_validator`, `default`, `widget`, `widgetparams`, `position`, `visible`) VALUES
-(4, 'nickname', '昵称', 'VARCHAR', '64', '1', 0, '', '', '', '', '', '', '', 0, 3),
+(3, 'nickname', '昵称', 'VARCHAR', '32', '0', 0, '', '', '', '', '', '', '', 0, 3),
+(4, 'avatar_sm', '小头像', 'VARCHAR', '256', '0', 0, '', '', '', '', '', '', '', 0, 3),
 (5, 'avatar_bg', '大头像', 'VARCHAR', '256', '0', 0, '', '', '', '', '', '', '', 0, 3),
-(6, 'avatar_sm', '小头像', 'VARCHAR', '256', '0', 0, '', '', '', '', '', '', '', 0, 3),
-(7, 'gender', '性别', 'VARCHAR', '8', '0', 0, '', '', '', '', '', '', '', 0, 3),
-(8, 'province', '省', 'INTEGER', '11', '0', 0, '', '', '', '', '', '', '', 0, 3),
-(9, 'city', '市', 'INTEGER', '11', '0', 0, '', '', '', '', '', '', '', 0, 3),
-(10, 'born', '出生年月', 'INTEGER', '11', '0', 0, '', '', '', '', '', '', '', 0, 3);
+(6, 'gender', '性别', 'VARCHAR', '8', '0', 0, '', '', '', '', '', '', '', 0, 3),
+(7, 'born', '出生年', 'VARCHAR', '64', '0', 0, '', '', '', '', '', '', '', 0, 3),
+(8, 'province', '省', 'INTEGER', '0', '0', 0, '', '', '', '', '', '', '', 0, 3),
+(9, 'city', '市', 'INTEGER', '0', '0', 0, '', '', '', '', '', '', '', 0, 3);
 
 -- --------------------------------------------------------
 
@@ -100,14 +104,39 @@ CREATE TABLE IF NOT EXISTS `ws_qq_users` (
   `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_at` datetime NOT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- 转存表中的数据 `ws_qq_users`
 --
 
 INSERT INTO `ws_qq_users` (`id`, `user_id`, `openid`, `access_token`, `create_at`, `update_at`) VALUES
-(1, 9, '10B4C92D99E312BCD34C99A809A691E2', '0CBB90A5A718EF80C250C9917893D158', '2014-08-11 05:19:08', '2014-08-11 13:27:17');
+(1, 3, 'C19E43BA26EBB89914368BFB355CB792', '9B91FD195AB405AECD1D6AAD19C8283F', '2014-08-11 06:11:03', '2014-08-11 15:28:17'),
+(2, 4, '10B4C92D99E312BCD34C99A809A691E2', '0CBB90A5A718EF80C250C9917893D158', '2014-08-11 06:11:31', '2014-08-11 14:18:25');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ws_sina_users`
+--
+
+CREATE TABLE IF NOT EXISTS `ws_sina_users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `access_token` varchar(64) NOT NULL,
+  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- 转存表中的数据 `ws_sina_users`
+--
+
+INSERT INTO `ws_sina_users` (`id`, `user_id`, `uid`, `access_token`, `create_at`, `update_at`) VALUES
+(2, 10, 1947703131, '2.00dY3oHCjZ8AeDb4cdc8a129HQ_5wC', '2014-08-11 07:26:56', '2014-08-11 15:28:02'),
+(3, 11, 2147483647, '2.00hVTOOEjZ8AeDf8f037b925_mpRGD', '2014-08-11 07:27:37', '2014-08-11 15:27:37');
 
 -- --------------------------------------------------------
 
@@ -144,7 +173,7 @@ CREATE TABLE IF NOT EXISTS `ws_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(20) NOT NULL,
   `password` varchar(128) NOT NULL,
-  `email` varchar(128) NOT NULL,
+  `email` varchar(128) DEFAULT NULL,
   `activkey` varchar(128) NOT NULL DEFAULT '',
   `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `lastvisit_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -155,15 +184,19 @@ CREATE TABLE IF NOT EXISTS `ws_users` (
   UNIQUE KEY `email` (`email`),
   KEY `status` (`status`),
   KEY `superuser` (`superuser`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- 转存表中的数据 `ws_users`
 --
 
 INSERT INTO `ws_users` (`id`, `username`, `password`, `email`, `activkey`, `create_at`, `lastvisit_at`, `superuser`, `status`) VALUES
-(8, 'admin', 'c90be6ee5df6128ccee1c56e7e253b97', 'xiaoma21@126.com', '07ad81bd229936371d2b49bc16e9deee', '2014-08-11 05:16:53', '2014-08-11 05:22:45', 1, 1),
-(9, 'qu_10b4c92d99e312bcd', '', '', '', '2014-08-11 05:19:08', '0000-00-00 00:00:00', 0, 0);
+(1, 'admin', 'c90be6ee5df6128ccee1c56e7e253b97', 'webmaster@example.com', '9a24eff8c15a6a141ece27eb6947da0f', '2014-08-11 05:52:26', '2014-08-11 06:03:40', 1, 1),
+(2, 'demo', 'c90be6ee5df6128ccee1c56e7e253b97', 'demo@example.com', '099f825543f7850cc038b90aaff39fac', '2014-08-11 05:52:26', '0000-00-00 00:00:00', 0, 1),
+(3, 'qu_c19e43ba26ebb8991', '', NULL, '', '2014-08-11 06:11:03', '0000-00-00 00:00:00', 0, 0),
+(4, 'qu_10b4c92d99e312bcd', '', NULL, '', '2014-08-11 06:11:31', '0000-00-00 00:00:00', 0, 0),
+(10, 'su_1947703131', '', NULL, '', '2014-08-11 07:26:56', '0000-00-00 00:00:00', 0, 0),
+(11, 'su_3874850065', '', NULL, '', '2014-08-11 07:27:37', '0000-00-00 00:00:00', 0, 0);
 
 --
 -- 限制导出的表
