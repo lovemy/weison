@@ -42,8 +42,8 @@ class QqLoginController extends Controller
 				    		$profile->nickname = $userInfo->nickname;
 				    		$profile->gender = $userInfo->gender;
 				    		$profile->born = $userInfo->year;
-				    		$profile->avatar_bg = $userInfo->figureurl_qq_1;
-				    		$profile->avatar_sm = $userInfo->figureurl_qq_2;
+				    		$profile->avatar_bg = $userInfo->figureurl_qq_2;
+				    		$profile->avatar_sm = $userInfo->figureurl_qq_1;
 				    		$profile->save(false);
 				    		//自动登录
 				    		$identity=UserIdentity::createAuthenticatedIdentity($user);

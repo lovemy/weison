@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2014 年 08 月 11 日 15:29
+-- 生成日期: 2014 年 08 月 11 日 15:58
 -- 服务器版本: 5.5.28
 -- PHP 版本: 5.3.17
 
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `ws_qq_users` (
 
 INSERT INTO `ws_qq_users` (`id`, `user_id`, `openid`, `access_token`, `create_at`, `update_at`) VALUES
 (1, 3, 'C19E43BA26EBB89914368BFB355CB792', '9B91FD195AB405AECD1D6AAD19C8283F', '2014-08-11 06:11:03', '2014-08-11 15:28:17'),
-(2, 4, '10B4C92D99E312BCD34C99A809A691E2', '0CBB90A5A718EF80C250C9917893D158', '2014-08-11 06:11:31', '2014-08-11 14:18:25');
+(2, 4, '10B4C92D99E312BCD34C99A809A691E2', '0CBB90A5A718EF80C250C9917893D158', '2014-08-11 06:11:31', '2014-08-11 15:57:18');
 
 -- --------------------------------------------------------
 
@@ -123,7 +123,7 @@ INSERT INTO `ws_qq_users` (`id`, `user_id`, `openid`, `access_token`, `create_at
 CREATE TABLE IF NOT EXISTS `ws_sina_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `uid` int(11) NOT NULL,
+  `uid` varchar(64) NOT NULL,
   `access_token` varchar(64) NOT NULL,
   `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_at` datetime NOT NULL,
@@ -135,8 +135,8 @@ CREATE TABLE IF NOT EXISTS `ws_sina_users` (
 --
 
 INSERT INTO `ws_sina_users` (`id`, `user_id`, `uid`, `access_token`, `create_at`, `update_at`) VALUES
-(2, 10, 1947703131, '2.00dY3oHCjZ8AeDb4cdc8a129HQ_5wC', '2014-08-11 07:26:56', '2014-08-11 15:28:02'),
-(3, 11, 2147483647, '2.00hVTOOEjZ8AeDf8f037b925_mpRGD', '2014-08-11 07:27:37', '2014-08-11 15:27:37');
+(2, 10, '1947703131', '2.00dY3oHCjZ8AeDb4cdc8a129HQ_5wC', '2014-08-11 07:26:56', '2014-08-11 15:28:02'),
+(3, 11, '3874850065', '2.00hVTOOEjZ8AeDf8f037b925_mpRGD', '2014-08-11 07:27:37', '2014-08-11 15:57:45');
 
 -- --------------------------------------------------------
 
