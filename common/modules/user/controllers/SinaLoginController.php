@@ -25,7 +25,7 @@ class SinaLoginController extends Controller
 				$uid = $token->uid;
 				$sinaUser = SinaUsers::model()->find('uid = :uid',array(':uid'=>$uid));
 				if(!$sinaUser){
-				              $userInfo = json_decode(Sina::getUserInfo($accessToken,$uid));				              
+		              $userInfo = json_decode(Sina::getUserInfo($accessToken,$uid));		              			    
 				    	//首次进入创建网站的用户
 				    	$user = new User;
 				    	$user->username = 'su_'.$uid;
@@ -44,6 +44,25 @@ class SinaLoginController extends Controller
 				    		$profile->gender = $userInfo->gender == 'm' ? "男" : "女";				    		
 				    		$profile->avatar_bg = $userInfo->avatar_hd;
 				    		$profile->avatar_sm = $userInfo->avatar_large;
+				    		$location = $userInfo->location;
+				    		if($location){
+				    			$temp = explode(' ',$location);
+				    			if(isset($temp[1])){
+				    				$criteria = new CDbCriteria;
+						    		$criteria->compare('city',$temp[1],true);
+						    		$city = Cities::model()->find($criteria);
+						    		if($city){
+						    			$profile->city = $city->cityid;
+						    		}else{
+						    			$ca = new CDbCriteria;
+							    		$ca->compare('area',$temp[1],true);
+							    		$area = Areas::model()->find($ca);
+							    		if($area){
+							    			$profile->area = $area->areaid;
+							    		}
+						    		}
+				    			}
+				    		}
 				    		$profile->save(false);
 				    		//自动登录
 				    		$identity=UserIdentity::createAuthenticatedIdentity($user);

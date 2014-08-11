@@ -24,7 +24,7 @@ class QqLoginController extends Controller
 				$openid = Qq::getOpenId($accessToken);
 				$qqUser = QqUsers::model()->find('openid = :openid',array(':openid'=>$openid));
 				if(!$qqUser){
-				              $userInfo = json_decode(Qq::getUserInfo($accessToken ,$openid));				    	
+		              $userInfo = json_decode(Qq::getUserInfo($accessToken ,$openid));				    	
 				    	//首次进入创建网站的用户
 				    	$user = new User;
 				    	$user->username = 'qu_'.strtolower($openid);
@@ -44,6 +44,19 @@ class QqLoginController extends Controller
 				    		$profile->born = $userInfo->year;
 				    		$profile->avatar_bg = $userInfo->figureurl_qq_2;
 				    		$profile->avatar_sm = $userInfo->figureurl_qq_1;
+				    		$criteria = new CDbCriteria;
+				    		$criteria->compare('city',$userInfo->city,true);
+				    		$city = Cities::model()->find($criteria);
+				    		if($city){
+				    			$profile->city = $city->cityid;	
+				    		}else{
+				    			$ca = new CDbCriteria;
+					    		$ca->compare('area',$userInfo->city,true);
+					    		$area = Areas::model()->find($ca);
+					    		if($area){
+					    			$profile->area = $area->areaid;
+					    		}
+				    		}				    		
 				    		$profile->save(false);
 				    		//自动登录
 				    		$identity=UserIdentity::createAuthenticatedIdentity($user);
