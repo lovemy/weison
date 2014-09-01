@@ -12,11 +12,22 @@ Antonio Ramirez.
 -
   
 ## YiiBooster version 4.1.0
+- **(enh)** upgarde to Bootstrap 3.2.0 - #882
+- **(enh)** upgarde to bootstrap-switch 3.0.2 - #867
+- **(enh)** add callbacks support to TbFileUpload
 - **(enh)** update TbHtml to the latest 1.3.0, and addeing its dependency TbArray  
 - **(fix)** TbActiveForm fix "[a]attr" format attribute #856 
 - **(fix)** allow multi relational column - #872  
 - **(fix)** fix TbButton dropdown items -maybe removed in a future release-
-- **(enh)** 
+- **(fix)** fix wrong fint size of jQuery UI button type "link"
+- **(fix)** fix TbButton type link
+- **(fix)** fix TbMenu encodes drop down menu items twice - #887
+- **(fix)** fix TbActiveForm allow to overwrite clientOptions[errorCssClass, successCssClass, inputContainer], and errorMessageCssClass - #891
+- **(fix)** fix TbEditable validating datetimepicker options existence in case of type datetime
+- **(fix)** fix datepicker z-index problem - #873
+- **(fix)** fix markdownEditorGroup Preview Button does not function correctly - #900 
+- **(enh)** upgraded to bootstrap markdown 2.5.0
+- **(enh)** upgraded to bootstrap-daterangepicker-1.3.12 - #852
 
 ## YiiBooster version 4.0.1
 - **(fix)** fix gii generated TbActiveForm code - #851

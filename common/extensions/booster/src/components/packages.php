@@ -15,7 +15,7 @@ return array(
 		'css' => array(($this->minify || $this->enableCdn) ? 'css/font-awesome.min.css' : 'css/font-awesome.css'),
 	),
 	'bootstrap.js' => array(
-		'baseUrl' => $this->enableCdn ? '//netdna.bootstrapcdn.com/bootstrap/3.1.1/' : $this->getAssetsUrl() . '/bootstrap/',
+		'baseUrl' => $this->enableCdn ? '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/' : $this->getAssetsUrl() . '/bootstrap/',
 		'js' => array($this->minify ? 'js/bootstrap.min.js' : 'js/bootstrap.js'),
 		'depends' => array('jquery'),
 	),
@@ -145,7 +145,7 @@ return array(
 		'depends' => array('bootstrap.js'),
 		'baseUrl' => $this->getAssetsUrl() . '/bootstrap-markdown',
 		'css' => array('css/bootstrap-markdown.min.css'),
-		'js' => array('js/bootstrap-markdown.js'),
+		'js' => array('js/bootstrap-markdown.js', 'js/to-markdown.js', 'js/markdown.js'),
 	),
 	'switch' => array(
 		'depends' => array('bootstrap.js'),
