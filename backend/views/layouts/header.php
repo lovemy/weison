@@ -53,6 +53,11 @@ $this->widget(
                                 'url' => Yii::app()->createUrl('user/profile'),
                             ),
                             '---',
+                             array(
+                                'label' => '权限相关',
+                                'url' => Yii::app()->createUrl('srbac/authitem/manage/'),
+                            ),
+                            '---',
                             array('label' => '退 出', 'url' => Yii::app()->createUrl('user/logout')),
                         )
                     ),
