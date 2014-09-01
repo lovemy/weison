@@ -60,7 +60,10 @@ return CMap::mergeArray(
 
 			//for user module
 			'common.modules.user.models.*',
-        	'common.modules.user.components.*',		
+        		'common.modules.user.components.*',	
+
+        		//for srbac module
+        		 'common.modules.srbac.controllers.SBaseController', 
 		),
 		/* uncomment and set if required */
 		// @see http://www.yiiframework.com/doc/api/1.1/CModule#setModules-detail
@@ -74,7 +77,7 @@ return CMap::mergeArray(
 			),
 
 			'user'=>array(
-				'class' => 'common.modules.user.UserModule',
+			  'class' => 'common.modules.user.UserModule',
 	            # encrypting method (php hash function)
 	            'hash' => 'md5',
 	            # send activation email
@@ -95,8 +98,40 @@ return CMap::mergeArray(
 	            'returnUrl' => array('/user/profile'),
 	            # page after logout
 	            'returnLogoutUrl' => array('/user/login'),
-	        ),				
-		), 
+	        ),	
+	         'srbac' => array(   
+	         		'class' => 'common.modules.srbac.SrbacModule',   
+		         'userclass'=>'User', //default: User      
+		         'userid'=>'id', //default: userid      
+		         'username'=>'username', //default:username      
+		         'delimeter'=>'@', //default:-      
+		         'debug'=>true, //default :false      
+		         'pageSize'=>10, // default : 15      
+		         'superUser' =>'Authority', //default: Authorizer      
+		         'css'=>'srbac.css',  //default: srbac.css      
+		         'layout'=>'application.views.layouts.main', //default: application.views.layouts.main,  
+	              //must be an existing alias      
+	              'notAuthorizedView'=> 'srbac.views.authitem.unauthorized', // default:                                          
+	              //srbac.views.authitem.unauthorized, must be an existing alias      
+	              'alwaysAllowed'=>array(   //default: array()         
+	              		'SiteLogin','SiteLogout','SiteIndex','SiteAdmin',         
+	              		'SiteError', 'SiteContact'
+	              	),      
+	              	'userActions'=>array('Show','View','List'), //default: array()
+	              	'listBoxNumberOfLines' => 15,  //default : 10
+	              	'imagesPath' => 'srbac.images', // default: srbac.images
+	              	'imagesPack'=>'noia', //default: noia
+	              	'iconText'=>true, // default : false
+	              	'header'=>'srbac.views.authitem.header', //default : srbac.views.authitem.header,
+	              	//must be an existing alias
+	              	'footer'=>'srbac.views.authitem.footer', //default: srbac.views.authitem.footer,
+	              	//must be an existing alias
+	              	'showHeader'=>true, // default: false
+	              	// 'showFooter'=>true, // default: false
+	              	'alwaysAllowedPath'=>'srbac.components', // default: srbac.components
+	              	// must be an existing alias    
+	              	)			
+			), 
 		'components' => array(
 			'user' => array(
 				'class' => 'WebUser',
@@ -127,10 +162,24 @@ return CMap::mergeArray(
 				'charset' => 'utf8'
 			),	
 
-    		'booster' => array(
+    			'booster' => array(
 				'class' => 'common.extensions.booster.src.components.Booster',
 				'responsiveCss' => true,
 			),
+
+			'authManager'=>array(     
+				// Path to SDbAuthManager in srbac module if you want to use case insensitive        
+				//access checking (or CDbAuthManager for case sensitive access checking)     
+				'class'=>'common.modules.srbac.components.SDbAuthManager',     
+				// The database component used     
+				'connectionID'=>'db',     
+				// The itemTable name (default:authitem)     
+				'itemTable'=>'ws_items',     
+				// The assignmentTable name (default:authassignment)     
+				'assignmentTable'=>'ws_assignments',     
+				// The itemChildTable name (default:authitemchild)     
+				'itemChildTable'=>'ws_itemchildren',   
+			), 
 			
 		),
 
