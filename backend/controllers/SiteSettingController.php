@@ -11,31 +11,31 @@ class SiteSettingController extends Controller
 	/**
 	* @return array action filters
 	*/
-	public function filters()
-	{
-		return array(
-			'accessControl', // perform access control for CRUD operations
-		);
-	}
+	// public function filters()
+	// {
+	// 	return array(
+	// 		'accessControl', // perform access control for CRUD operations
+	// 	);
+	// }
 
 	/**
 	* Specifies the access control rules.
 	* This method is used by the 'accessControl' filter.
 	* @return array access control rules
 	*/
-	public function accessRules()
-	{
-		return array(			
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array(),
-				'users'=>array('@'),
-			),
+	// public function accessRules()
+	// {
+	// 	return array(			
+	// 		array('allow', // allow authenticated user to perform 'create' and 'update' actions
+	// 			'actions'=>array(),
+	// 			'users'=>array('@'),
+	// 		),
 			
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
-		);
-	}
+	// 		array('deny',  // deny all users
+	// 			'users'=>array('*'),
+	// 		),
+	// 	);
+	// }
 
 	/**
 	* Displays a particular model.
@@ -73,5 +73,59 @@ class SiteSettingController extends Controller
 		));
 	}
 
+	public function actionUpload()
+	{
+		$dir = '/home/wwwroot/weison/img/upload/';
+
+		$_FILES['file']['type'] = strtolower($_FILES['file']['type']);
+
+		if ($_FILES['file']['type'] == 'image/png'
+		|| $_FILES['file']['type'] == 'image/jpg'
+		|| $_FILES['file']['type'] == 'image/gif'
+		|| $_FILES['file']['type'] == 'image/jpeg'
+		|| $_FILES['file']['type'] == 'image/pjpeg')
+		{
+			// setting file's mysterious name
+			$filename = md5(date('YmdHis')).'.jpg';		    
+
+			// copying
+			move_uploaded_file($_FILES['file']['tmp_name'], $dir.$filename);
+
+			//更新图片库
+			$key = $_FILES['file']['name'];
+			$backendImgJsonFile = Yii::app()->params['backendImgJsonFile'];
+			if(!file_exists($backendImgJsonFile)){
+				touch($backendImgJsonFile);		    	
+			}		
+			$contents = json_decode(file_get_contents($backendImgJsonFile));
+			$imgExist = false;
+			if(is_array($contents)){
+				foreach($contents as $v){
+					if($v->key === $key){
+						$imgExist = true;
+					}			
+				}
+				if(!$imgExist){
+					$index = count($contents);
+					$imgArray = json_decode(json_encode(array(array('thumb'=>Yii::app()->params['imgUrl'].'/upload/'.$filename,'image'=>Yii::app()->params['imgUrl'].'/upload/'.$filename,'title'=>'image '.($index+1),'folder'=>'upload','key'=>$key))));
+					$contents = json_encode(array_merge($contents,$imgArray));				
+					$handle = fopen($backendImgJsonFile, 'w');
+					fwrite($handle, $contents);
+					fclose($handle);
+				}
+			}else{
+				$contents = json_encode(array(array('thumb'=>Yii::app()->params['imgUrl'].'/upload/'.$filename,'image'=>Yii::app()->params['imgUrl'].'/upload/'.$filename,'title'=>'image 1','folder'=>'upload','key'=>$key)));
+				$handle = fopen($backendImgJsonFile, 'w');
+				fwrite($handle, $contents);
+				fclose($handle);
+			}											 
+			   
+			// displaying file
+			$array = array(
+				'filelink' => "http://img.weison.com/upload/".$filename,
+			);
+			echo stripslashes(json_encode($array));
+		}
+	}
 
 }

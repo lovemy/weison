@@ -43,4 +43,6 @@ return array(
 	'frontendUrl' => 'http://www.weison.com',	
 	'imgUrl' => 'http://img.weison.com',
 	'adminUrl' => 'http://admin.weison.com',
+	'backendImgJsonFile' => '/home/wwwroot/weison/backend/www/images.json',
+	'frontendImgJsonFile' => '/home/wwwroot/weison/frontend/www/images.json',
 );

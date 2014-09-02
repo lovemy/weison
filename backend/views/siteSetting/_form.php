@@ -19,7 +19,42 @@
 
 	<?php echo $form->textFieldGroup($model,'backend_name',array('widgetOptions'=>array('htmlOptions'=>array('maxlength'=>128)))); ?>
 
-	<?php echo $form->textFieldGroup($model,'copyright',array('widgetOptions'=>array('htmlOptions'=>array('maxlength'=>256)))); ?>
+	
+	<div class="form-group">
+		<label class="control-label required" for="SiteSetting_copyright">
+			网站版权信息 <span class="required">*</span>
+		</label>
+		<div>
+			<?php Yii::import('common.extensions.redactor.ImperaviRedactorWidget'); ?>
+			<?php 
+				$this->widget('ImperaviRedactorWidget', array(
+				    // You can either use it for model attribute
+				    'model' => $model,
+				    'attribute' => 'copyright',
+
+				    // or just for input field
+				    'name' => 'my_input_name',
+
+
+				    // Some options, see http://imperavi.com/redactor/docs/
+				    'options' => array(
+				        'lang' => 'zh_cn',
+				        'toolbar' => true,
+				        'iframe' => true,
+				        'mobile'=> true,		       
+				        // 'css' => 'wym.css',
+				        'imageUpload'=>'../upload',		        
+				        'imageGetJson'=>'http://admin.weison.com/images.json',		        
+				    ),
+				    'plugins' => array(
+				        'fullscreen' => array(
+				            'js' => array('fullscreen.js',),
+				        ),		       
+				    ),
+				));
+			?>
+		</div>
+	</div>		
 
 <div class="form-actions">
 	<?php $this->widget('booster.widgets.TbButton', array(
