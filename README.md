@@ -15,4 +15,6 @@ useage
 
 4,if you change the default project folder name ,don't foget to change the .htaccess file in folder www
 
+5,run command  "chmod -R 777 projectfolder" in command line
+
 finished
