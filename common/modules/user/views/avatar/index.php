@@ -29,8 +29,8 @@ $this->breadcrumbs=array(
 		<div class="tcrop">头像预览</div>
 		<div class="crop crop100"><img id="crop-preview-100" <?php if($profile->avatar_bg){?>src="<?php echo $profile->avatar_bg;?>"<?php }?> alt="" width="100px" height="100px"></div>
 		<div class="crop crop60"><img id="crop-preview-60" <?php if($profile->avatar_sm){?>src="<?php echo $profile->avatar_bg;?>"<?php }?> alt="" width="60px" height="60px"></div>
-		<a class="uppic-btn save-pic" href="javascript:;">保存</a>
-		<a class="uppic-btn reupload-img" href="javascript:$('#user-pic').uploadify('cancel','*');">重新上传</a>
+		<a class="btn btn-primary pull-right save-pic" href="javascript:;"> 保存 </a>
+		<a class="btn btn-default pull-left reupload-img" href="javascript:$('#user-pic').uploadify('cancel','*');"> 重新上传 </a>
 	</div>
 </form>
 		</div>
