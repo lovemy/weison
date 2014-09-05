@@ -3,11 +3,11 @@ $this->widget(
     'booster.widgets.TbNavbar',
     array(
         'type' => null, // null or 'inverse'
-        'brand' =>"&nbsp;&nbsp;&nbsp;&nbsp;".Core::getSiteParam('frontend_name'),
+        'brand' =>Core::getSiteParam('frontend_name'),
         'brandUrl' => '#',
         'collapse' => true, // requires bootstrap-responsive.css
         'fixed' => true,
-        'fluid' => true,
+        'fluid' => false,
         'htmlOptions' => array('class'=>'navbar-fixed-top'),
         'items' => array(
             array(
@@ -19,7 +19,8 @@ $this->widget(
                     array('label' => '帮 助', 'url' => Yii::app()->createUrl('site/help'),'active' => Yii::app()->controller->id == 'site' && Yii::app()->controller->action->id == 'help'),
                 ),
             ),
-            '<form class="navbar-form navbar-left" action=""><div class="form-group"><input type="text" class="form-control" placeholder="搜 索"></div></form>',
+            '<form class="navbar-form navbar-left" action="/" method="post">
+             <input type="hidden" name="_csrf" value="YS1EYlBVNy4ITjISPW1HAzBOcFIYNGJULGN1JCJtYkIJSjcECR4HXQ=="><div class="input-group"><input type="text" class="form-control" name="q" placeholder="全站搜索"><span class="input-group-btn"><button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search" style="height:20px;line-height:20px; vertical-align:middle;"></i></button></span></div></form>',
             array(
                 'class' => 'booster.widgets.TbMenu',
                 'type' => 'navbar',
