@@ -1,1 +1,0 @@
-This is the folder store assets files
