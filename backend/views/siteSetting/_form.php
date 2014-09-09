@@ -5,7 +5,7 @@
 
 <p class="help-block">带<span class="required">*</span>为必填内容.</p>
 
-<?php echo $form->errorSummary($model); ?>
+	<?php echo $form->errorSummary($model); ?>
 
 	<?php echo $form->textFieldGroup($model,'frontend_icon',array('widgetOptions'=>array('htmlOptions'=>array('maxlength'=>128)))); ?>
 
@@ -19,49 +19,26 @@
 
 	<?php echo $form->textFieldGroup($model,'backend_name',array('widgetOptions'=>array('htmlOptions'=>array('maxlength'=>128)))); ?>
 
-	
-	<div class="form-group">
-		<label class="control-label required" for="SiteSetting_copyright">
-			网站版权信息 <span class="required">*</span>
-		</label>
-		<div>
-			<?php Yii::import('common.extensions.redactor.ImperaviRedactorWidget'); ?>
-			<?php 
-				$this->widget('ImperaviRedactorWidget', array(
-				    // You can either use it for model attribute
-				    'model' => $model,
-				    'attribute' => 'copyright',
+	<?php echo $form->redactorGroup($model,'copyright',
+		array('widgetOptions'=>array('editorOptions'=>array(
+			'lang' => 'zh_cn',
+			'toolbar' => true,
+			'iframe' => true,
+			'mobile'=> true,		
+			'imageUpload'=>'../upload',		        
+			'imageGetJson'=>'http://admin.weison.com/images.json',	
+			'plugins' => array(
+				'fullscreen',       
+			),   
+		), 'htmlOptions'=>array('maxlength'=>128)))); 
+	?>		
 
-				    // or just for input field
-				    'name' => 'my_input_name',
-
-
-				    // Some options, see http://imperavi.com/redactor/docs/
-				    'options' => array(
-				        'lang' => 'zh_cn',
-				        'toolbar' => true,
-				        'iframe' => true,
-				        'mobile'=> true,		       
-				        // 'css' => 'wym.css',
-				        'imageUpload'=>'../upload',		        
-				        'imageGetJson'=>'http://admin.weison.com/images.json',		        
-				    ),
-				    'plugins' => array(
-				        'fullscreen' => array(
-				            'js' => array('fullscreen.js',),
-				        ),		       
-				    ),
-				));
-			?>
-		</div>
-	</div>		
-
-<div class="form-actions">
-	<?php $this->widget('booster.widgets.TbButton', array(
+	<div class="form-actions">
+		<?php $this->widget('booster.widgets.TbButton', array(
 			'buttonType'=>'submit',
 			'context'=>'primary',
 			'label'=> '保 存',
 		)); ?>
-</div>
+	</div>
 
 <?php $this->endWidget(); ?>
