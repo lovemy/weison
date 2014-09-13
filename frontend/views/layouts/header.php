@@ -33,8 +33,9 @@ $this->widget(
                         'label' =>Yii::app()->user->id ? (Core::getUser(Yii::app()->user->id)->profile->nickname ? Core::getUser(Yii::app()->user->id)->profile->nickname : Yii::app()->user->name) : '',
                         'url' => '#',
                         'items' => array(
-                            array('label' => '个人信息', 'url' => Yii::app()->createUrl('user/profile')),       
-                            array('label' => '退 出', 'url' => Yii::app()->createUrl('user/logout')),                                                       
+                            array('label' => '个人主页','icon'=>'glyphicon glyphicon-user', 'url' => Yii::app()->createUrl('user/profile'), 'active'=>Yii::app()->controller->id == 'profile' && Yii::app()->controller->action->id == 'profile'),       
+                            array('label' => '账户设置','icon'=>'glyphicon glyphicon-cog', 'url' => Yii::app()->createUrl('user/profile/edit'), 'active'=>Yii::app()->controller->id == 'profile' && Yii::app()->controller->action->id == 'edit'),                            
+                            array('label' => '退 出', 'icon'=>'glyphicon glyphicon-log-out', 'url' => Yii::app()->createUrl('user/logout')),                                                       
                         ),
                         'visible'=>!Yii::app()->user->isGuest,
                     ),                    

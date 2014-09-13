@@ -47,7 +47,7 @@ class ProfileController extends Controller
 				$model->save();
 				$profile->save();
 				Yii::app()->user->setFlash('profileMessage',UserModule::t("Changes is saved."));
-				$this->redirect(array('/user/profile'));
+				$this->redirect(array('/user/profile/edit'));
 			} else $profile->validate();
 		}
 
@@ -102,4 +102,18 @@ class ProfileController extends Controller
 		}
 		return $this->_model;
 	}
+
+	public function actionDynamicCity()
+	{
+
+       if(isset($_POST['pid'])){
+            $data=Cities::model()->findAll('provinceid=:pid',array(':pid'=>$_POST['pid']));            
+            $data=CHtml::listData($data,'cityid','city'); 
+
+            echo CHtml::tag('option', array('value'=>""),CHtml::encode("-选择市-"),true);
+            foreach($data as $value=>$name) { 
+                echo CHtml::tag('option', array('value'=>$value),CHtml::encode($name),true); 
+            } 
+        }    
+	}	
 }
