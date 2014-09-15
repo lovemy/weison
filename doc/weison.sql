@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.8
+-- version 4.2.2
 -- http://www.phpmyadmin.net
 --
--- 主机: localhost
--- 生成日期: 2014 年 08 月 11 日 23:06
--- 服务器版本: 5.5.28
--- PHP 版本: 5.3.17
+-- Host: localhost
+-- Generation Time: 2014-09-15 10:15:59
+-- 服务器版本： 5.5.37-log
+-- PHP Version: 5.5.9
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- 数据库: `weison`
+-- Database: `weison`
 --
 
 -- --------------------------------------------------------
@@ -27,11 +27,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `ws_areas` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `areaid` varchar(20) NOT NULL,
   `area` varchar(50) NOT NULL,
-  `cityid` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
+  `cityid` varchar(20) NOT NULL
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='行政区域县区信息表' AUTO_INCREMENT=3145 ;
 
 --
@@ -3189,15 +3188,27 @@ INSERT INTO `ws_areas` (`id`, `areaid`, `area`, `cityid`) VALUES
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `ws_assignments`
+--
+
+CREATE TABLE IF NOT EXISTS `ws_assignments` (
+  `itemname` varchar(64) NOT NULL,
+  `userid` varchar(64) NOT NULL,
+  `bizrule` text,
+  `data` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `ws_cities`
 --
 
 CREATE TABLE IF NOT EXISTS `ws_cities` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `cityid` varchar(20) NOT NULL,
   `city` varchar(50) NOT NULL,
-  `provinceid` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
+  `provinceid` varchar(20) NOT NULL
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='行政区域地州市信息表' AUTO_INCREMENT=346 ;
 
 --
@@ -3554,33 +3565,73 @@ INSERT INTO `ws_cities` (`id`, `cityid`, `city`, `provinceid`) VALUES
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `ws_itemchildren`
+--
+
+CREATE TABLE IF NOT EXISTS `ws_itemchildren` (
+  `parent` varchar(64) NOT NULL,
+  `child` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ws_items`
+--
+
+CREATE TABLE IF NOT EXISTS `ws_items` (
+  `name` varchar(64) NOT NULL,
+  `type` int(11) NOT NULL,
+  `description` text,
+  `bizrule` text,
+  `data` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `ws_items`
+--
+
+INSERT INTO `ws_items` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
+('Administrator', 2, NULL, NULL, NULL),
+('Authority', 2, NULL, NULL, NULL),
+('Create Post', 0, NULL, NULL, NULL),
+('Create User', 0, NULL, NULL, NULL),
+('Delete Post', 0, NULL, NULL, NULL),
+('Delete User', 0, NULL, NULL, NULL),
+('Edit Post', 0, NULL, NULL, NULL),
+('Edit User', 0, NULL, NULL, NULL),
+('Post Manager', 1, NULL, NULL, NULL),
+('User', 2, NULL, NULL, NULL),
+('User Manager', 1, NULL, NULL, NULL),
+('View Post', 0, NULL, NULL, NULL),
+('View User', 0, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `ws_profiles`
 --
 
 CREATE TABLE IF NOT EXISTS `ws_profiles` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+`user_id` int(11) NOT NULL,
   `nickname` varchar(32) NOT NULL DEFAULT '',
   `avatar_sm` varchar(256) NOT NULL DEFAULT '',
   `avatar_bg` varchar(256) NOT NULL DEFAULT '',
   `gender` varchar(8) NOT NULL DEFAULT '',
   `born` varchar(64) NOT NULL DEFAULT '',
-  `city` int(11) NOT NULL DEFAULT '0',
-  `area` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
+  `province` int(11) NOT NULL DEFAULT '0',
+  `city` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- 转存表中的数据 `ws_profiles`
 --
 
-INSERT INTO `ws_profiles` (`user_id`, `nickname`, `avatar_sm`, `avatar_bg`, `gender`, `born`, `city`, `area`) VALUES
-(1, '', '', '', '', '', 0, 0),
-(2, '', '', '', '', '', 0, 0),
-(29, '小马爱编程', 'http://tp4.sinaimg.cn/1109135635/180/40050428751/1', 'http://ww3.sinaimg.cn/crop.0.3.456.456.1024/421c1113gw1eerwlo90ibj20cs0csdhn.jpg', '男', '', 0, 110102),
-(32, '灯火阑珊', 'http://q.qlogo.cn/qqapp/101145780/C19E43BA26EBB89914368BFB355CB792/40', 'http://q.qlogo.cn/qqapp/101145780/C19E43BA26EBB89914368BFB355CB792/100', '男', '1987', 0, 110102),
-(33, '.', 'http://q.qlogo.cn/qqapp/101145780/10B4C92D99E312BCD34C99A809A691E2/40', 'http://q.qlogo.cn/qqapp/101145780/10B4C92D99E312BCD34C99A809A691E2/100', '男', '1987', 420500, 0),
-(34, '灯火2012阑珊', 'http://tp4.sinaimg.cn/1947703131/180/40001367367/1', 'http://tp4.sinaimg.cn/1947703131/180/40001367367/1', '男', '', 440300, 0),
-(35, '灯火今夜又阑珊', 'http://tp2.sinaimg.cn/3874850065/180/40061822768/1', 'http://ww3.sinaimg.cn/crop.0.0.459.459.1024/e6f58511gw1ej0d7d6xyij20cs0csq4b.jpg', '男', '', 0, 110101);
+INSERT INTO `ws_profiles` (`user_id`, `nickname`, `avatar_sm`, `avatar_bg`, `gender`, `born`, `province`, `city`) VALUES
+(1, '管理员', 'http://img.weison.com//avatar/20140915/20140915150954447779_60.jpg', 'http://img.weison.com//avatar/20140915/20140915150954447779_100.jpg', '0', '1987年11月02日', 420000, 420300),
+(2, '', 'http://img.weison.com//avatar/20140912/20140912121052088855_60.jpg', 'http://img.weison.com//avatar/20140912/20140912121052088855_100.jpg', '', '', 0, 0),
+(3, '灯火阑珊', 'http://q.qlogo.cn/qqapp/101145780/C19E43BA26EBB89914368BFB355CB792/100', 'http://q.qlogo.cn/qqapp/101145780/C19E43BA26EBB89914368BFB355CB792/40', '男', '1987', 0, 0),
+(4, '.', 'http://q.qlogo.cn/qqapp/101145780/10B4C92D99E312BCD34C99A809A691E2/100', 'http://q.qlogo.cn/qqapp/101145780/10B4C92D99E312BCD34C99A809A691E2/40', '男', '1987', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -3589,7 +3640,7 @@ INSERT INTO `ws_profiles` (`user_id`, `nickname`, `avatar_sm`, `avatar_bg`, `gen
 --
 
 CREATE TABLE IF NOT EXISTS `ws_profiles_fields` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+`id` int(10) NOT NULL,
   `varname` varchar(50) NOT NULL,
   `title` varchar(255) NOT NULL,
   `field_type` varchar(50) NOT NULL,
@@ -3604,10 +3655,8 @@ CREATE TABLE IF NOT EXISTS `ws_profiles_fields` (
   `widget` varchar(255) NOT NULL DEFAULT '',
   `widgetparams` varchar(5000) NOT NULL DEFAULT '',
   `position` int(3) NOT NULL DEFAULT '0',
-  `visible` int(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `varname` (`varname`,`widget`,`visible`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+  `visible` int(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- 转存表中的数据 `ws_profiles_fields`
@@ -3619,8 +3668,8 @@ INSERT INTO `ws_profiles_fields` (`id`, `varname`, `title`, `field_type`, `field
 (5, 'avatar_bg', '大头像', 'VARCHAR', '256', '0', 0, '', '', '', '', '', '', '', 0, 3),
 (6, 'gender', '性别', 'VARCHAR', '8', '0', 0, '', '', '', '', '', '', '', 0, 3),
 (7, 'born', '出生年', 'VARCHAR', '64', '0', 0, '', '', '', '', '', '', '', 0, 3),
-(9, 'city', '市', 'INTEGER', '0', '0', 0, '', '', '', '', '', '', '', 0, 3),
-(10, 'area', '区', 'INTEGER', '0', '0', 0, '', '', '', '', '', '', '', 0, 3);
+(8, 'province', '省', 'INTEGER', '11', '0', 0, '', '', '', '', '', '', '', 0, 3),
+(9, 'city', '市', 'INTEGER', '8', '0', 0, '', '', '', '', '', '', '', 0, 3);
 
 -- --------------------------------------------------------
 
@@ -3629,11 +3678,10 @@ INSERT INTO `ws_profiles_fields` (`id`, `varname`, `title`, `field_type`, `field
 --
 
 CREATE TABLE IF NOT EXISTS `ws_provinces` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `provinceid` varchar(20) NOT NULL,
   `province` varchar(50) NOT NULL,
-  `shortname` varchar(3) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `shortname` varchar(3) DEFAULT NULL
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='省份信息表' AUTO_INCREMENT=35 ;
 
 --
@@ -3683,13 +3731,12 @@ INSERT INTO `ws_provinces` (`id`, `provinceid`, `province`, `shortname`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `ws_qq_users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL COMMENT '用户ID',
   `openid` varchar(64) NOT NULL COMMENT 'qq_openid',
   `access_token` varchar(64) NOT NULL COMMENT '访问令牌',
   `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_at` datetime NOT NULL COMMENT '修改时间',
-  PRIMARY KEY (`id`)
+  `update_at` datetime NOT NULL COMMENT '修改时间'
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
@@ -3697,8 +3744,8 @@ CREATE TABLE IF NOT EXISTS `ws_qq_users` (
 --
 
 INSERT INTO `ws_qq_users` (`id`, `user_id`, `openid`, `access_token`, `create_at`, `update_at`) VALUES
-(1, 32, 'C19E43BA26EBB89914368BFB355CB792', '9B91FD195AB405AECD1D6AAD19C8283F', '2014-08-11 15:03:17', '2014-08-11 23:03:17'),
-(2, 33, '10B4C92D99E312BCD34C99A809A691E2', '0CBB90A5A718EF80C250C9917893D158', '2014-08-11 15:03:56', '2014-08-11 23:05:14');
+(1, 3, 'C19E43BA26EBB89914368BFB355CB792', '', '2014-08-11 06:11:03', '2014-08-11 14:35:32'),
+(2, 4, '10B4C92D99E312BCD34C99A809A691E2', '0CBB90A5A718EF80C250C9917893D158', '2014-08-11 06:11:31', '2014-08-11 14:18:25');
 
 -- --------------------------------------------------------
 
@@ -3707,23 +3754,13 @@ INSERT INTO `ws_qq_users` (`id`, `user_id`, `openid`, `access_token`, `create_at
 --
 
 CREATE TABLE IF NOT EXISTS `ws_sina_users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `uid` varchar(64) NOT NULL,
+  `uid` int(11) NOT NULL,
   `access_token` varchar(64) NOT NULL,
   `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
-
---
--- 转存表中的数据 `ws_sina_users`
---
-
-INSERT INTO `ws_sina_users` (`id`, `user_id`, `uid`, `access_token`, `create_at`, `update_at`) VALUES
-(1, 29, '1109135635', '2.008qoDNBjZ8AeD7890f238584r877B', '2014-08-11 14:55:12', '2014-08-11 22:55:43'),
-(2, 34, '1947703131', '2.00dY3oHCjZ8AeDb4cdc8a129HQ_5wC', '2014-08-11 15:04:19', '2014-08-11 23:04:27'),
-(3, 35, '3874850065', '2.00hVTOOEjZ8AeDf8f037b925_mpRGD', '2014-08-11 15:04:54', '2014-08-11 23:04:54');
+  `update_at` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -3732,15 +3769,14 @@ INSERT INTO `ws_sina_users` (`id`, `user_id`, `uid`, `access_token`, `create_at`
 --
 
 CREATE TABLE IF NOT EXISTS `ws_site_setting` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `frontend_icon` varchar(128) NOT NULL,
   `frontend_logo` varchar(128) NOT NULL,
   `backend_icon` varchar(128) NOT NULL,
   `backend_logo` varchar(128) NOT NULL,
   `frontend_name` varchar(128) NOT NULL,
   `backend_name` varchar(128) NOT NULL,
-  `copyright` varchar(256) NOT NULL COMMENT '版权信息',
-  PRIMARY KEY (`id`)
+  `copyright` varchar(256) NOT NULL COMMENT '版权信息'
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='网站全局参数设置表' AUTO_INCREMENT=2 ;
 
 --
@@ -3748,7 +3784,7 @@ CREATE TABLE IF NOT EXISTS `ws_site_setting` (
 --
 
 INSERT INTO `ws_site_setting` (`id`, `frontend_icon`, `frontend_logo`, `backend_icon`, `backend_logo`, `frontend_name`, `backend_name`, `copyright`) VALUES
-(1, 'http://img.weison.com/site/icon.jpg', 'cccccc', 'http://img.weison.com/site/icon.jpg', 'cccccc', 'nlq', 'nlq后台管理系统', 'mahongbo');
+(1, 'http://img.weison.com/site/icon.jpg', 'cccccc', 'http://img.weison.com/site/icon.jpg', 'cccccc', 'nlq', 'nlq后台管理系统', '<p>weison</p>');
 
 -- --------------------------------------------------------
 
@@ -3757,7 +3793,7 @@ INSERT INTO `ws_site_setting` (`id`, `frontend_icon`, `frontend_logo`, `backend_
 --
 
 CREATE TABLE IF NOT EXISTS `ws_users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(128) NOT NULL,
   `email` varchar(128) DEFAULT NULL,
@@ -3765,26 +3801,18 @@ CREATE TABLE IF NOT EXISTS `ws_users` (
   `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `lastvisit_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `superuser` int(1) NOT NULL DEFAULT '0',
-  `status` int(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`),
-  UNIQUE KEY `email` (`email`),
-  KEY `status` (`status`),
-  KEY `superuser` (`superuser`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
+  `status` int(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- 转存表中的数据 `ws_users`
 --
 
 INSERT INTO `ws_users` (`id`, `username`, `password`, `email`, `activkey`, `create_at`, `lastvisit_at`, `superuser`, `status`) VALUES
-(1, 'admin', 'c90be6ee5df6128ccee1c56e7e253b97', 'webmaster@example.com', '9a24eff8c15a6a141ece27eb6947da0f', '2014-08-11 05:52:26', '2014-08-11 13:50:51', 1, 1),
-(2, 'demo', 'c90be6ee5df6128ccee1c56e7e253b97', 'demo@example.com', '099f825543f7850cc038b90aaff39fac', '2014-08-11 05:52:26', '0000-00-00 00:00:00', 0, 1),
-(29, 'su_1109135635', '', NULL, '', '2014-08-11 14:55:12', '0000-00-00 00:00:00', 0, 0),
-(32, 'qu_c19e43ba26ebb8991', '', NULL, '', '2014-08-11 15:03:17', '0000-00-00 00:00:00', 0, 0),
-(33, 'qu_10b4c92d99e312bcd', '', NULL, '', '2014-08-11 15:03:56', '0000-00-00 00:00:00', 0, 0),
-(34, 'su_1947703131', '', NULL, '', '2014-08-11 15:04:19', '0000-00-00 00:00:00', 0, 0),
-(35, 'su_3874850065', '', NULL, '', '2014-08-11 15:04:54', '0000-00-00 00:00:00', 0, 0);
+(1, 'admin', 'c90be6ee5df6128ccee1c56e7e253b97', 'xiaoma21@126.com', '9a24eff8c15a6a141ece27eb6947da0f', '2014-08-11 05:52:26', '2014-09-15 00:56:39', 1, 1),
+(2, 'demo', 'c90be6ee5df6128ccee1c56e7e253b97', 'demo@example.com', '099f825543f7850cc038b90aaff39fac', '2014-08-11 05:52:26', '2014-09-12 02:51:35', 0, 1),
+(3, 'qu_c19e43ba26ebb8991', '', NULL, '', '2014-08-11 06:11:03', '0000-00-00 00:00:00', 0, 0),
+(4, 'qu_10b4c92d99e312bcd', '', NULL, '', '2014-08-11 06:11:31', '0000-00-00 00:00:00', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -3793,11 +3821,10 @@ INSERT INTO `ws_users` (`id`, `username`, `password`, `email`, `activkey`, `crea
 --
 
 CREATE TABLE IF NOT EXISTS `ws_zipcode` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `areaid` varchar(20) NOT NULL,
   `zip` varchar(20) NOT NULL,
-  `code` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
+  `code` varchar(20) NOT NULL
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3145 ;
 
 --
@@ -6953,14 +6980,163 @@ INSERT INTO `ws_zipcode` (`id`, `areaid`, `zip`, `code`) VALUES
 (3144, '659004', '831300', '0994');
 
 --
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `ws_areas`
+--
+ALTER TABLE `ws_areas`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ws_assignments`
+--
+ALTER TABLE `ws_assignments`
+ ADD PRIMARY KEY (`itemname`,`userid`);
+
+--
+-- Indexes for table `ws_cities`
+--
+ALTER TABLE `ws_cities`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ws_itemchildren`
+--
+ALTER TABLE `ws_itemchildren`
+ ADD PRIMARY KEY (`parent`,`child`), ADD KEY `child` (`child`);
+
+--
+-- Indexes for table `ws_items`
+--
+ALTER TABLE `ws_items`
+ ADD PRIMARY KEY (`name`);
+
+--
+-- Indexes for table `ws_profiles`
+--
+ALTER TABLE `ws_profiles`
+ ADD PRIMARY KEY (`user_id`);
+
+--
+-- Indexes for table `ws_profiles_fields`
+--
+ALTER TABLE `ws_profiles_fields`
+ ADD PRIMARY KEY (`id`), ADD KEY `varname` (`varname`,`widget`,`visible`);
+
+--
+-- Indexes for table `ws_provinces`
+--
+ALTER TABLE `ws_provinces`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ws_qq_users`
+--
+ALTER TABLE `ws_qq_users`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ws_sina_users`
+--
+ALTER TABLE `ws_sina_users`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ws_site_setting`
+--
+ALTER TABLE `ws_site_setting`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ws_users`
+--
+ALTER TABLE `ws_users`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `username` (`username`), ADD UNIQUE KEY `email` (`email`), ADD KEY `status` (`status`), ADD KEY `superuser` (`superuser`);
+
+--
+-- Indexes for table `ws_zipcode`
+--
+ALTER TABLE `ws_zipcode`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `ws_areas`
+--
+ALTER TABLE `ws_areas`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3145;
+--
+-- AUTO_INCREMENT for table `ws_cities`
+--
+ALTER TABLE `ws_cities`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=346;
+--
+-- AUTO_INCREMENT for table `ws_profiles`
+--
+ALTER TABLE `ws_profiles`
+MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `ws_profiles_fields`
+--
+ALTER TABLE `ws_profiles_fields`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `ws_provinces`
+--
+ALTER TABLE `ws_provinces`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
+--
+-- AUTO_INCREMENT for table `ws_qq_users`
+--
+ALTER TABLE `ws_qq_users`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `ws_sina_users`
+--
+ALTER TABLE `ws_sina_users`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `ws_site_setting`
+--
+ALTER TABLE `ws_site_setting`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `ws_users`
+--
+ALTER TABLE `ws_users`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `ws_zipcode`
+--
+ALTER TABLE `ws_zipcode`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3145;
+--
 -- 限制导出的表
 --
+
+--
+-- 限制表 `ws_assignments`
+--
+ALTER TABLE `ws_assignments`
+ADD CONSTRAINT `ws_assignments_ibfk_1` FOREIGN KEY (`itemname`) REFERENCES `ws_items` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- 限制表 `ws_itemchildren`
+--
+ALTER TABLE `ws_itemchildren`
+ADD CONSTRAINT `ws_itemchildren_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `ws_items` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `ws_itemchildren_ibfk_2` FOREIGN KEY (`child`) REFERENCES `ws_items` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- 限制表 `ws_profiles`
 --
 ALTER TABLE `ws_profiles`
-  ADD CONSTRAINT `user_profile_id` FOREIGN KEY (`user_id`) REFERENCES `ws_users` (`id`) ON DELETE CASCADE;
+ADD CONSTRAINT `user_profile_id` FOREIGN KEY (`user_id`) REFERENCES `ws_users` (`id`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
