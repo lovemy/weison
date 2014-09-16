@@ -41,7 +41,7 @@ $this->widget(
                     ),                    
                 ),
             ),
-            Yii::app()->user->id  ?  '<img src="'.Core::getUser(Yii::app()->user->id)->profile->avatar_sm.'" class="pull-right" style="width:30px;height:30px;margin-top:8px;" />' : '',
+            Yii::app()->user->id  ?  '<img src="'.Core::getUser(Yii::app()->user->id)->profile->avatar_sm.'" class="pull-right img-rounded" style="width:30px;height:30px;margin-top:8px;" />' : '',
         ),
     )
 );
